@@ -1,0 +1,7 @@
+<?php
+session_start(); // allows website to remember variables
+session_destroy(); // destroys session
+
+header("Location: ../Index.php");
+
+?>
