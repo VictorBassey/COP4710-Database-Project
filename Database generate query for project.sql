@@ -111,7 +111,7 @@ create table createevent (
 )ENGINE=INNODB;
 
 create table university (
-	univid integer,
+	univid integer not null auto_increment,
     name varchar (255),
     location varchar (255),
     description varchar (255),
