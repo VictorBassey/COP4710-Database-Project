@@ -44,13 +44,17 @@ Create index admin_ix1 on admin (aid);
 
 create table events (
 	eid integer not null auto_increment,
+    aid integer not null,
     description varchar(255) not null,
     time datetime not null,
     venuetype varchar(20) not null,
     eventtype varchar(20) not null,
     location varchar(255) not null,
     approved boolean,
-    primary key (eid)
+    primary key (eid),
+    foreign key (aid)
+		references admin (aid)
+		on delete cascade on update cascade
 )ENGINE=INNODB;
 
 Create index events_ix1 on events (eid);
@@ -98,17 +102,6 @@ create table memberof (
         on delete cascade on update cascade
 )ENGINE=INNODB;
 
-create table createevent (
-	aid integer,
-    eid integer,
-    primary key (aid),
-    foreign key (aid)
-		references admin (aid)
-		on delete cascade on update cascade,
-	foreign key (eid)
-		references events (eid)
-        on delete cascade on update cascade
-)ENGINE=INNODB;
 
 create table university (
 	univid integer not null auto_increment,
