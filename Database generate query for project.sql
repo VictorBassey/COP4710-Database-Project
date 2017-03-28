@@ -15,7 +15,7 @@ use eventdb;
 
 create table user (
     uid integer not null auto_increment,
-    password varchar(20) not null,
+    password varchar(50) not null,
     name varchar(255) not null,
     phone varchar(10) not null,
     email varchar(50) not null,
