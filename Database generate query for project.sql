@@ -62,11 +62,9 @@ CREATE TABLE memberof (
     rsoid INTEGER,
     PRIMARY KEY (uid),
     FOREIGN KEY (uid)
-        REFERENCES user (uid)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES user (uid),
     FOREIGN KEY (rsoid)
         REFERENCES rso (rsoid)
-        ON DELETE CASCADE ON UPDATE CASCADE
 )  ENGINE=INNODB;
 
 
@@ -104,8 +102,7 @@ CREATE TABLE events (
     approved BOOLEAN,
     PRIMARY KEY (eid),
     FOREIGN KEY (aid)
-        REFERENCES admin (aid)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES admin (aid),
 	FOREIGN KEY (rsoid)
 		REFERENCES rsoaffiliation (rsoid)
 )  ENGINE=INNODB;
@@ -121,9 +118,17 @@ CREATE TABLE comment (
     comment VARCHAR(255),
     PRIMARY KEY (commentid),
     FOREIGN KEY (uid)
-        REFERENCES user (uid)
-        ON DELETE CASCADE ON UPDATE CASCADE,
+        REFERENCES user (uid),
     FOREIGN KEY (eid)
         REFERENCES events (eid)
-        ON DELETE CASCADE ON UPDATE CASCADE
-)  ENGINE=INNODB;
+)ENGINE=INNODB;
+
+CREATE TABLE registered (
+	eid INTEGER not null,
+    uid INTEGER not null,
+    PRIMARY KEY (eid, uid),
+    FOREIGN KEY (eid)
+		REFERENCES events (eid),
+	FOREIGN KEY (uid)
+		REFERENCES user (uid)
+)ENGINE=INNODB;
