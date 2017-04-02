@@ -56,7 +56,9 @@ $user = "SELECT * FROM user WHERE name = '$username' and password = '$password'"
        
        
        $_SESSION['message'] = "Login Succesful! Welcome back.";
+       
        header("location: ../welcome.php");
+       die();
       
     }else{
         $_SESSION['message'] = "Incorrect Username or Password";

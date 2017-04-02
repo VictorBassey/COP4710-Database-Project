@@ -26,7 +26,7 @@ session_start();
             <input type="submit" id="btn" name="Login"/>
         </p>
         <p>
-           <a href="../signup.php">Signup</a>
+           <a href="../Signup/signup.php">Signup</a>
         </p>
         </div>
         </form>

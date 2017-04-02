@@ -46,8 +46,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             
             $_SESSION['message'] = "Registration Succesful! Added $username to the database!";
-            header("location: ../welcome.php");
             
+            header("location: ../welcome.php");
+            die();
         }
         else{
             $_SESSION['message'] = "User could not be added to the database!";

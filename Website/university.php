@@ -1,7 +1,11 @@
 <?php
 
 	//This php file connects to the database
-	include 'databaseConnection.php';
+    //die();
+	//include 'databaseConnection.php';
+    include '../Navbar/includes/dbh.php';
+    session_start();
+    include '../Navbar/Navbar/navbar.php';
 	
 ?>
 
@@ -21,9 +25,10 @@
                 padding: 0;
                 background-color: #000066;
             }
+            
             body
             {
-                width: 80%;
+                width: 100%;
                 margin: 0 auto;
                 font-family:Arial,Helvetica,sans-serif;
                 font-size: 1em;
@@ -103,14 +108,15 @@
 		
 		<section>
         <h2 id="uni">University Information</h2>
+            
 		<?php
-			
+			//echo $_SESSION('message');
 			
 			//Sets variable to a query
 			$getInfo = "SELECT * FROM university";
 			
 			//Makes the query
-			$data = mysqli_query($conn, $getInfo) or die('Error getting data');
+			$data = mysqli_query($mysqli, $getInfo) or die('Error getting data');
 			
 			
 			//Sets up the table
@@ -135,7 +141,7 @@
 			}
 			
 			//Closes table tab
-			echo "</tsble>";
+			echo "</table>";
 
 		?>
 		</section>		
@@ -143,6 +149,9 @@
 		<!--Allows users to quickly go back to the top of the page-->
         <p><a href="#top" title="Back To Top">Back To Top</a></p>
         </article>
+            
         </main>
+        
     </body>
+    
 </html>

@@ -1,7 +1,9 @@
  <?php 
-	
+	session_start();
 	//This php files connects to the database
-	include 'databaseConnection.php';
+//include 'databaseConnection.php';
+   
+include '../Navbar/includes/dbh.php';
 	
 	//The following variables are taking in information from the user  
 	$name = $_POST['universityName'];
@@ -11,11 +13,16 @@
 	
 	
 	//Insert the user submitted information into the database
+
+
 	$insert = "INSERT INTO university (name, location, description, noofstudents) 
 	VALUES ('$name', '$location', '$description', '$noofstudents')";
 	
-	$result = mysqli_query($conn,$insert);
+	$result = mysqli_query($mysqli,$insert);
 	
+    if(!$result) {
+        echo "no likey";
+    }
 	/*
 	//If the query didn't process then
 	if ($result == NULL)
@@ -33,6 +40,6 @@
     echo "\n Redirecting...";
 	
 	//Redirects the user back to the university page with a delay of 5 seconds
-	header ("refresh:3;url=http://localhost:8081/website/university.php" );
+	header ("refresh:3;url=http://localhost/COP4710-Database-Project/Website/university.php" );
 	die();
 	

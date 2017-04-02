@@ -13,67 +13,34 @@ use eventdb;
 #InnoDB is used because that supports foreign key constraints.
 
 
-create table user (
-    uid integer not null auto_increment,
-    password varchar(50) not null,
-    name varchar(255) not null,
-    phone varchar(10) not null,
-    email varchar(50) not null,
-    primary key (uid)
-)ENGINE=INNODB;
+CREATE TABLE user (
+    uid INTEGER NOT NULL AUTO_INCREMENT,
+    password VARCHAR(50) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    PRIMARY KEY (uid)
+)  ENGINE=INNODB;
 
 Create index user_ix1 on user (uid);
 
-create table superadmin (
-	said integer,
-    primary key (said),
-    foreign key (said)
-		references user (uid)
-        on delete cascade on update cascade
-)ENGINE=INNODB;
+CREATE TABLE superadmin (
+    said INTEGER,
+    PRIMARY KEY (said),
+    FOREIGN KEY (said)
+        REFERENCES user (uid)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
-create table admin (
-	aid integer,
-    primary key (aid),
-    foreign key (aid)
-		references user (uid)
-        on delete cascade on update cascade
-)ENGINE=INNODB;
+CREATE TABLE admin (
+    aid INTEGER,
+    PRIMARY KEY (aid),
+    FOREIGN KEY (aid)
+        REFERENCES user (uid)
+        ON DELETE CASCADE ON UPDATE CASCADE
+)  ENGINE=INNODB;
 
 Create index admin_ix1 on admin (aid);
-
-create table events (
-	eid integer not null auto_increment,
-    aid integer not null,
-    description varchar(255) not null,
-    time datetime not null,
-    venuetype varchar(20) not null,
-    eventtype varchar(20) not null,
-    location varchar(255) not null,
-    approved boolean,
-    primary key (eid),
-    foreign key (aid)
-		references admin (aid)
-		on delete cascade on update cascade
-)ENGINE=INNODB;
-
-Create index events_ix1 on events (eid);
-
-create table comment (
-	commentid integer not null auto_increment,
-    uid integer,
-    eid integer,
-    rating integer,
-    ctime timestamp,
-    comment varchar(255),
-    primary key (commentid),
-    foreign key (uid)
-		references user (uid)
-        on delete cascade on update cascade,
-	foreign key (eid)
-		references events (eid)
-        on delete cascade on update cascade
-)ENGINE=INNODB;
 
 
 create table rso (
@@ -84,43 +51,84 @@ create table rso (
 
 Create index rso_ix1 on rso (rsoid);
 
-create table manages (
-	aid integer,
-    rsoid integer,
-    primary key (aid, rsoid)
-)ENGINE=INNODB;
+CREATE TABLE manages (
+    aid INTEGER,
+    rsoid INTEGER,
+    PRIMARY KEY (aid , rsoid)
+)  ENGINE=INNODB;
 
-create table memberof (
-	uid integer,
-    rsoid integer,
-    primary key (uid),
-    foreign key (uid)
-		references user (uid)
-        on delete cascade on update cascade,
-	foreign key (rsoid)
-		references rso (rsoid)
-        on delete cascade on update cascade
-)ENGINE=INNODB;
+CREATE TABLE memberof (
+    uid INTEGER,
+    rsoid INTEGER,
+    PRIMARY KEY (uid),
+    FOREIGN KEY (uid)
+        REFERENCES user (uid),
+    FOREIGN KEY (rsoid)
+        REFERENCES rso (rsoid)
+)  ENGINE=INNODB;
 
 
-create table university (
-	univid integer not null auto_increment,
-    name varchar (255),
-    location varchar (255),
-    description varchar (255),
-    noofstudents integer,
-    primary key (univid)
-)ENGINE=INNODB;
+CREATE TABLE university (
+    univid INTEGER NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    location VARCHAR(255),
+    description VARCHAR(255),
+    noofstudents INTEGER,
+    PRIMARY KEY (univid)
+)  ENGINE=INNODB;
 
 Create index university_ix1 on university (univid);
 
-create table rsoaffiliation (
-	rsoid integer,
-    univid integer,
-    foreign key (rsoid)
-		references rso (rsoid)
-		on delete cascade on update cascade,
-	foreign key (univid)
-		references university (univid)
-        on delete cascade on update cascade
+CREATE TABLE rsoaffiliation (
+    rsoid INTEGER,
+    univid INTEGER,
+    FOREIGN KEY (rsoid)
+        REFERENCES rso (rsoid),
+    FOREIGN KEY (univid)
+        REFERENCES university (univid)
+)  ENGINE=INNODB;
+
+Create index rsoaff_ix1 on rsoaffiliation (rsoid);
+
+CREATE TABLE events (
+    eid INTEGER NOT NULL AUTO_INCREMENT,
+    aid INTEGER NOT NULL,
+    rsoid INTEGER NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    time DATETIME NOT NULL,
+    venuetype VARCHAR(20) NOT NULL,
+    eventtype VARCHAR(20) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    approved BOOLEAN,
+    PRIMARY KEY (eid),
+    FOREIGN KEY (aid)
+        REFERENCES admin (aid),
+	FOREIGN KEY (rsoid)
+		REFERENCES rsoaffiliation (rsoid)
+)  ENGINE=INNODB;
+
+Create index events_ix1 on events (eid);
+
+CREATE TABLE comment (
+    commentid INTEGER NOT NULL AUTO_INCREMENT,
+    uid INTEGER,
+    eid INTEGER,
+    rating INTEGER,
+    ctime TIMESTAMP,
+    comment VARCHAR(255),
+    PRIMARY KEY (commentid),
+    FOREIGN KEY (uid)
+        REFERENCES user (uid),
+    FOREIGN KEY (eid)
+        REFERENCES events (eid)
+)ENGINE=INNODB;
+
+CREATE TABLE registered (
+	eid INTEGER not null,
+    uid INTEGER not null,
+    PRIMARY KEY (eid, uid),
+    FOREIGN KEY (eid)
+		REFERENCES events (eid),
+	FOREIGN KEY (uid)
+		REFERENCES user (uid)
 )ENGINE=INNODB;
