@@ -29,6 +29,7 @@ $user = "SELECT * FROM user WHERE name = '$username' and password = '$password'"
         $_SESSION['username'] = $username; 
        
        $uid = $row['uid'];
+       $_SESSION['uid'] = $uid;
        $user = "SELECT * FROM superadmin WHERE said = '$uid'";
        $users = $mysqli->query($user);
        $count = mysqli_num_rows($users);

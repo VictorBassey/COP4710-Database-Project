@@ -33,6 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $row = mysqli_fetch_array($users, MYSQL_ASSOC);
             
             $userid = $row['uid'];
+            
             //$_SESSION['result'] = $row['uid'];                           
             if($accountType > 1){
                 $sql = "INSERT INTO superadmin (said) "
@@ -46,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             
             $_SESSION['message'] = "Registration Succesful! Added $username to the database!";
-            
+            $_SESSION['uid'] = $userid;
             header("location: ../welcome.php");
             die();
         }
