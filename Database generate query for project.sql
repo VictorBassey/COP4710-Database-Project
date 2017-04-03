@@ -115,7 +115,7 @@ CREATE TABLE comment (
     uid INTEGER,
     eid INTEGER,
     rating INTEGER,
-    ctime TIMESTAMP,
+    ctime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     comment VARCHAR(255),
     PRIMARY KEY (commentid),
     FOREIGN KEY (uid)
