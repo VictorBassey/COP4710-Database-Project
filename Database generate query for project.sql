@@ -108,6 +108,7 @@ CREATE TABLE events (
 )  ENGINE=INNODB;
 
 Create index events_ix1 on events (eid);
+<<<<<<< HEAD
 
 CREATE TABLE comment (
     commentid INTEGER NOT NULL AUTO_INCREMENT,
@@ -121,6 +122,31 @@ CREATE TABLE comment (
         REFERENCES user (uid),
     FOREIGN KEY (eid)
         REFERENCES events (eid)
+=======
+
+CREATE TABLE comment (
+    commentid INTEGER NOT NULL AUTO_INCREMENT,
+    uid INTEGER,
+    eid INTEGER,
+    rating INTEGER,
+    ctime TIMESTAMP,
+    comment VARCHAR(255),
+    PRIMARY KEY (commentid),
+    FOREIGN KEY (uid)
+        REFERENCES user (uid),
+    FOREIGN KEY (eid)
+        REFERENCES events (eid)
+)ENGINE=INNODB;
+
+CREATE TABLE registered (
+	eid INTEGER not null,
+    uid INTEGER not null,
+    PRIMARY KEY (eid, uid),
+    FOREIGN KEY (eid)
+		REFERENCES events (eid),
+	FOREIGN KEY (uid)
+		REFERENCES user (uid)
+>>>>>>> origin/master
 )ENGINE=INNODB;
 
 CREATE TABLE registered (
