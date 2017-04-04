@@ -1,0 +1,29 @@
+user_panel.php:
+    -Here, the page shows a select button.
+    -Selecting the 'view' button, it will take you to user_view.php
+    -Selecting the 'create' button, it will take you to create_event.php if you are an admin
+
+*if an student or admin 
+user_view.php: 
+    -Here, the page is going to filter the events that a users can view according to their scope.
+    -There is select button to select the type of event the user wants to see
+    -the page would automatically display only the events the user can see
+    -the last two field on the table are for commenting and rating
+
+on user_panel.php, if you select 'create', then: 
+
+create_event.php:
+    -Here, basically fill out the form to create event 
+    -Clicking on 'create', you'll create a new event
+    
+*if you select 'view', then 
+ 
+    +view_public.php
+        -this php file will filter all the public events of the university that user wants to see.
+    
+    +view_private.php
+        -this php file will filter all the private events from the university where the user belogns to, plus public. 
+    
+    +view_rso.php 
+        -this php file will filter all the events of the rso/s that the user follows plus public. 
+
