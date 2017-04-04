@@ -1,14 +1,10 @@
 <?php
 include 'dbh.php';
-$username = ''; 
-//username public event filter
-
-//$username = $_SESSION['username'];
 
 if(isset ($_POST['uniseristy'])&&isset($_POST['type']) && $_SESSION['accountType'] != 2)
 {
     //you must be logged in
-     if(!isset($_SESSION['username'])) 
+     if(!isset($_SESSION['uid'])) 
      {
             echo '<h1>Sorry, you must be logged in to view this event.</h1>';
             echo '</div></div></body></html>';
@@ -17,14 +13,9 @@ if(isset ($_POST['uniseristy'])&&isset($_POST['type']) && $_SESSION['accountType
     
     if($_POST['type'] == 'rso')
     {
-    $university = $_POST['university']; 
-    $username = $_SESSION['username'];
+    $university = $_POST['university'];         
     //user info
-    $user = "SELECT * FROM user WHERE name = '$username'";
-    $users = $mysqli->query($user);
-    $row = mysqli_fetch_array($users, MYSQL_ASSOC);
-
-    $uid = $row['uid'];
+    $uid = $_SESSION['uid';
 
     $univid = "SELECT univid FROM rsoaffiliation WHERE rsoid IN (SELECT rsoid FROM events WHERE eid IN (SELECT eid FROM registered WHERE uid = '$uid'))"; 
 

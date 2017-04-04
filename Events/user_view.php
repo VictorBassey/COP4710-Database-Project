@@ -6,15 +6,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>View Events</title>
-		<style>
+    <head>
+  <title>UCF Events</title>
+        <style>
 			table,tr,th,td
 			{
 				border: 1px solid black;
 			}
 		</style>  
-</head>
-    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
     <center><h3>View Events</h3></center>
     
@@ -29,9 +30,9 @@
         echo"<select name='type'>
         <option value='' disabled='disabled' selected='selected'>select type</option>
         
-        <option name='rso'><a href='view_rso.php'>rso</a></option>
+        <option name='rso'>rso</option>
         
-        <option name='private'><a href='view_private.php'>private</a></option>
+        <option name='private'>private</option>
         </select>";
         }
         ?>
@@ -56,9 +57,9 @@
 				<td>".$row['venuetype']."</td>
 				<td>".$row['eventtype']."</td>
 				<td>".$row['location']."</td>
-				<td>".$row['time']."</td>
-                <td><a href = comment.php>comment</a></td>
-                <td><a href = rating.php>rating</a></td>
+				<td>".$row['time']."</td>;
+                <td><a href='eventcomments.php'>comment</a></td>
+                <td><a href='eventrating.php'>rate</a></td>
 			</tr>";  
             endwhile;
             ?>

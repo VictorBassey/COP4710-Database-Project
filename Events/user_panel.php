@@ -1,4 +1,7 @@
 <?php
+
+include "../Navbar/navbar/navbar.php";
+
 session_start();
 include 'dbh.php';
 
@@ -10,6 +13,9 @@ if(isset($_SESSION['username']))
     $row = mysqli_fetch_array($users, MYSQL_ASSOC);
 
     $uid = $row['uid'];
+    
+    //save variable
+    $_SESSION['uid'] = $uid; 
     
     //if you are a student
     if($_POST['user'] == 'view')
@@ -32,9 +38,9 @@ if(isset($_SESSION['username']))
 }
 
 ?>
-<html>
-<head>
-</head>
+
+    <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="../Navbar/Signup/signupStyle.css" type="text/css">
 
     <body>  
     <form  action="user_panel.php">
@@ -45,4 +51,3 @@ if(isset($_SESSION['username']))
         
     </form>
     </body>
-</html>

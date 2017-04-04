@@ -1,20 +1,20 @@
 <?php
 include 'dbh.php';
-$username = ''; 
-//username public event filter
-//$username = $_SESSION['username'];
 
 //if university space has been filled and the user is not a superadmin
 if(isset ($_POST['uniseristy']) && $_SESSION['accountType'] != 2)
 {
-
+    //if logged in
+      if(!isset($_SESSION['uid'])) 
+     {
+            echo '<h1>Sorry, you must be logged in to view this event.</h1>';
+            echo '</div></div></body></html>';
+            die();
+     }
+    
     $university = $_POST['university']; 
     $username = $_SESSION['username'];
-    $user = "SELECT * FROM user WHERE name = '$username'";
-    $users = $mysqli->query($user);
-    $row = mysqli_fetch_array($users, MYSQL_ASSOC);
-
-    $uid = $row['uid'];
+    $uid = $_SESSION['uid']; 
 
     $univid = "SELECT univid FROM rsoaffiliation WHERE rsoid IN (SELECT rsoid FROM events WHERE eid IN (SELECT eid FROM registered WHERE uid = '$uid'))"; 
 

@@ -1,7 +1,12 @@
 <?php 
+
+include '../Navbar/navbar/navbar.php'; 
+
+include '../Navbar/includes/dbh.php';
+//include 'dbh.php'; 
 session_start(); 
 //if logged in
-if(isset($_SESSION['username']) && isset($_POST['submit']) && $_SESSION['accountType'] == 1)
+if(isset($_SESSION['uid']) && isset($_POST['submit']) && $_SESSION['accountType'] == 1)
 {
     $description = $_POST['description']; 
     $venuetype = $_POST['venuetype']; 
@@ -20,15 +25,12 @@ if(isset($_SESSION['username']) && isset($_POST['submit']) && $_SESSION['account
 
 $date = $_POST['date']; 
 $location = $_POST['location']; 
-    $username = $_SESSION['username'];
-    $user = "SELECT * FROM user WHERE name = '$username'";
-    $users = $mysqli->query($user);
-    $row = mysqli_fetch_array($users, MYSQL_ASSOC);
-
-    $uid = $row['uid'];
+    
+    //from user_panel.php
+    $uid = $_SESSION['uid'];
     
     //check if user is an admin
-    $admin = "SELECT* FROM events WHERE aid IN (SELECT aid FROM admin WHERE aid = '$uid'"; 
+    $admin = "SELECT* FROM events WHERE aid IN (SELECT aid FROM admin WHERE aid = '$uid')"; 
     
     $count = $mysqli->query($admin);
     $result = mysqli_fetch_array($count, MYSQL_ASSOC); 
@@ -36,6 +38,7 @@ $location = $_POST['location'];
     if($count->num_rows > 0)
     {
         $sql = "INSERT INTO events (aid, description, time, venuetype, eventtype, location, approved)". "VALUES('$uid', '$description', '$date', '$venuetype', '$eventtype', '$location')";
+        
         echo 'You created an event sucessfully'; 
     } 
     else

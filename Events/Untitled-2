@@ -1,0 +1,6 @@
+INSERT INTO events (description, time, venuetype, eventtype, location, approved) VALUES ("COP4710", "2015-04-15, 14:00 PM", "Database Management Systems", "public", "University of Central Florida", 1);
+INSERT INTO events (description, time, venuetype, eventtype, location, approved) VALUES ("COP4710", "2015-04-15, 14:30 PM", "Database Management Systems", "private", "University of Central Florida", 1);
+INSERT INTO events (description, time, venuetype, eventtype, location, approved) VALUES ("COP4710", "2015-04-15, 14:00 PM", "Database Management Systems", "rso", "University of Central Florida", 1);
+INSERT INTO events (description, time, venuetype, eventtype, location, approved) VALUES ("COP4710", "2015-04-15, 14:00 PM", "Database Management Systems", "public", "University of Central Florida", 1);
+INSERT INTO events (description, time, venuetype, eventtype, location, approved) VALUES ("COP4710", "2015-04-15, 14:00 PM", "Database Management Systems", "private", "University of Central Florida", 0);
+INSERT INTO events (description, time, venuetype, eventtype, location, approved) VALUES ("COP4710", "2015-04-15, 14:00 PM", "Database Management Systems", "rso", "University of Central Florida", 1);
