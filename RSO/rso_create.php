@@ -31,6 +31,7 @@ include "../Navbar/navbar/navbar.php";
     <form class="form" action="rso_signup.php" method="post" enctype="multipart/form-data" autocomplete="off">
       <div class="alert alert-error"><?= $_SESSION['message'] ?></div>
       <input type="text" placeholder="RSO Name" name="name" required />
+      <input type="text" placeholder="University" name="university" required/>
       <p> Five (5) emails with the same domain needed to create RSO </p>
       <input type="email" placeholder="Email (1)" name="email_1" required />
       <input type="email" placeholder="Email (2)" name="email_2" required />
