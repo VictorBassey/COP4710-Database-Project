@@ -1,8 +1,10 @@
 <?php
     session_start();
     date_default_timezone_set('America/New_York');
-    include '../Navbar/includes/dbh.php';
-    //include '../Navbar/navbar/navbar.php';
+include "../Navbar/navbar.php";    
+include '../Navbar/includes/dbh.php';
+    
+    
     
 
     // refrences to a variable outside of function $mysqli
@@ -25,6 +27,7 @@
 
     function getComments($mysqli){
        // $eid = $_SESSION['eid'];
+        // $eid = $_POST['eid'];
         $eid = 1;
         $sql = "SELECT * FROM comment WHERE eid= '$eid'";
         $result = mysqli_query($mysqli, $sql);
@@ -47,6 +50,27 @@
         }
     }
 
+// Query and code to set event details!!!!!!!!!!!
+        $eid = 1;
+        // $eid = $_SESSION['eid'];
+        $sql = "SELECT * FROM events WHERE eid = '$eid'";
+        $result = mysqli_query($mysqli, $sql);
+        
+        if(mysqli_num_rows($result) > 0 ){
+            $row = $result ->fetch_assoc(); 
+                
+            $description = $row['description'];
+            $location = $row['location'];
+            $eventTime = $row['time'];
+            //$uid = $row['uid'];
+            $rsoID = $row['rsoid'];
+            $aid = $row['aid'];
+            
+        }else{
+            echo "No event with that Event ID Exists!";
+        }
+    
+
 ?>
 
 <!DOCTYPE html>
@@ -59,13 +83,11 @@
         *{
             margin: auto;
         }
-        body{
-            
-        }
+       
    
 textarea{
     width: 50%;
-    margin-top: 10%;
+    margin-top: 3%;
     margin-left: 25%;
     margin-bottom: 0%;
     height: 80px;
@@ -73,12 +95,12 @@ textarea{
     resize:none;
 }
 
-button {
+.commentsubmit {
     width: 100px;
     height: 30px;
     margin-left: 25%;
-    margin-bottom: 5%;
-    background-color: #282828;
+    margin-bottom: 2%;
+    background-color: #333;
     border: none;
     color: #fff;
     font-family: arial;
@@ -102,6 +124,31 @@ button {
     color: #282828;
     font-weight: 100;
 }
+        
+ .event-box{
+    margin-top: 5%;
+    width: 60%;
+    padding: 20px;
+     padding-top: 2px;
+    margin-bottom: 4px;
+    background-color: #333;
+    border-radius: 4px;  
+}
+ .event-box p{
+     
+    font-family: arial;
+    font-size: 14px;
+    line-height: 16px;
+    color: #fff;
+    font-weight: 100; 
+     
+        }
+        
+ul{
+   margin-left: none; 
+    text-align: left;
+    list-style: none;
+        }
     
     </style>
 </head>
@@ -112,11 +159,48 @@ button {
 
     
 <?php // $mysqli is a variable outside of function
+   
+    //echo "$description <br>";
+    //echo  "$location <br>";
+    //echo  "$eventTime <br>";
+    //echo   "$uid <br>";
+    //echo   "$rsoID <br>";
+    //echo   "$aid <br>";
+     
+   // echo "<h1>Event Details</h1>";
+    echo "<div class='event-box'><p>";
+            echo "<ul id='eventdetails'>";    
+                echo "<h1>Event Details</h1>";
+                echo "<li>Event Location: $location</li><br><br>";
+                echo "<li>Event Time: $eventTime</li><br><br>";
+                echo "<li>Event RSO: $rsoID</li><br><br>";
+                echo "<li>Event AdminID: $aid</li><br><br>";
+                echo "<li>Event Description:";
+                echo nl2br($description)."<br>"; 
+                    //echo $eventTime."<br>";
+                    //echo $rsoID."<br>";
+                    //echo $aid."<br>";
+                    //echo nl2br($description); 
+            echo "</ul>";
+                echo "<p></div>";
+    
+   /* echo"
+    <h1>Event Details</h1>
+    <ul>
+        <li>Event Description: $description</li>
+        <li>Event Location: $location</li>
+        <li>Event Time: $eventTime</li>
+        <li>RSO ID: $rsoID</li>
+        <li>Admin ID: $aid</li>
+    </ul>
+    ";
+    */
+    
    echo" <form method='POST' action='".setComments($mysqli)."'>
         <input type='hidden' name='uid' value='Anonymous'>
         <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
         <textarea name='message'></textarea><br>
-        <button type='submit' name='commentSubmit'>Comment</button>
+        <button class='commentsubmit' type='submit' name='commentSubmit'>Comment</button>
     </form>";
     
 getComments($mysqli)
