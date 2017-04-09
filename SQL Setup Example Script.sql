@@ -52,3 +52,7 @@ VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name 
 INSERT INTO comment (uid, eid, rating, comment)
 VALUES ((SELECT uid FROM user WHERE name = 'user'), (SELECT eid FROM events WHERE description = 'We learn how DBs work!'), 5, 'Great experience!');
 
+# Approve events
+UPDATE events
+SET approved = TRUE
+WHERE description IN ('Introductions', 'We learn how DBs work!');
