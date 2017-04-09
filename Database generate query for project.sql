@@ -94,7 +94,7 @@ Create index rsoaff_ix1 on rsoaffiliation (rsoid);
 CREATE TABLE events (
     eid INTEGER NOT NULL AUTO_INCREMENT,
     aid INTEGER NOT NULL,
-    rsoid INTEGER NOT NULL,
+    rsoid INTEGER,
     description VARCHAR(255) NOT NULL,
     time DATETIME NOT NULL,
     venuetype VARCHAR(20) NOT NULL,
