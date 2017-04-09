@@ -2,7 +2,7 @@
 
 <?php
     session_start();
-    include 'Navbar/navbar.php';
+    include 'navbar.php';
     
 ?>
 
