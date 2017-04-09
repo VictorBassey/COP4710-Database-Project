@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+    <?php 
+    session_start();
+    include'../navbar/navbar.php';
+    include'../navbar/includes/dbh.php';
+    ?>
 <head>
   <title>UCF Events</title>
         <style>
@@ -46,9 +51,7 @@
     
 <div class="container">
 <?php       
-session_start();
-    
-include'dbh.php';
+
 
 echo '<br><center><label>Your RSO events</label>';
     

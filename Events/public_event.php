@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+<?php 
+    session_start();
+    include'../navbar/navbar.php';
+    include'../navbar/includes/dbh.php';
+    ?>
 <head>
   <title>UCF Events</title>
         <style>
@@ -47,9 +52,10 @@
     
 <div>
 <?php       
-session_start();
 
-include'dbh.php';
+
+
+
 //Public events
 echo '<br><center><label>Your Public Events</label>';
     
