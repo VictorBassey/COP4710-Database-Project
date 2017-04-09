@@ -1,4 +1,9 @@
 <html>
+    <?php 
+    session_start();
+    include'../navbar/navbar.php';
+    include'../navbar/includes/dbh.php';
+    ?>
 <head>
   <title>UCF Events</title>
   <meta charset="utf-8">
@@ -28,8 +33,7 @@
   <div class="eventtable">
   
   <?php
-    include 'dbh.php';
-    session_start(); 
+   
     //$uid = $_SESSION['uid']; 
     
     $sql="SELECT description, eid, rsoid FROM events"; 

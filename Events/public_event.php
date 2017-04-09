@@ -100,7 +100,7 @@ $result = $mysqli->query($sql);
                 <td>'.$row['eventtype'].'</td>
                 <td>'.$row['location'].'</td>
                 <td>'.$row['time'].'</td>
-                <td><h3><a href="displayEvent.php?varname='.$row['eid'].'">Display</a></h3></td></tr>';
+                <td><h3><a href="event_comments.php?varname='.$row['eid'].'">Display</a></h3></td></tr>';
             echo'</table>';
             }
         ?>

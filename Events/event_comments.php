@@ -14,7 +14,7 @@ include '../Navbar/includes/dbh.php';
             // grabs data from url or Session vars
             $uid = $_SESSION['uid'];
             //$eid = $_SESSION['eid'];
-            $eid = 1;
+            $eid = $_POST['varname'];
             $message = $_POST['message'];
 
             //inserts data to the database

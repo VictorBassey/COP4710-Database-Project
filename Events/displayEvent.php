@@ -1,4 +1,8 @@
-
+<?php 
+    session_start();
+    include'../navbar/navbar.php';
+    include'../navbar/includes/dbh.php';
+    ?>
 <head>
   <title>UCF Events</title>
   <meta charset="utf-8">
@@ -32,7 +36,7 @@
 
 <?php
 	//get all info on the Event, check if it exists
-    include 'dbh.php';  
+    
     
     $id = $_GET['varname'];
     

@@ -1,4 +1,9 @@
 <html>
+    <?php 
+    session_start();
+    include'../navbar/navbar.php';
+    include'../navbar/includes/dbh.php';
+    ?>
 <head>
   <title>UCF Events</title>
   <meta charset="utf-8">
@@ -30,7 +35,7 @@
     
     <?php
       //fetch event information
-      include'dbh.php';
+      
       $eid =$mysqli->real_escape_string($_GET['id']);
       //now connect to the database
       
