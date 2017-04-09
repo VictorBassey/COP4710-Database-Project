@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include '../Navbar/navbar/navbar.php';
+include '../Navbar/navbar.php';
 include '../Navbar/includes/dbh.php';
 
 $sql = 'SELECT * FROM rso';

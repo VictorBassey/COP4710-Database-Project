@@ -1,9 +1,10 @@
 <?php
 
 	//This php file connects to the database
-	include 'dbh.php';
-	include 'navBarAdmin.html';
 	session_start();
+include '../navbar/includes/dbh.php';
+	include '../navbar/navbar.php';
+	
 	
 	
 ?>
@@ -107,7 +108,7 @@
 				$getInfo = "SELECT * FROM university";
 				
 				//Makes the query
-				$data = mysqli_query($conn, $getInfo) or die('Error getting data');
+				$data = mysqli_query($mysqli, $getInfo) or die('Error getting data');
 				
 				
 				//Sets up the table

@@ -18,7 +18,7 @@
 		 <?php 
 			
 			//This php files connects to the database
-			include 'dbh.php';
+			include '../navbar/includes/dbh.php';
 			
 			//The following variables are taking in information from the user  
 			$name = $_POST['universityName'];
@@ -32,7 +32,7 @@
 			VALUES ('$name', '$location', '$description', '$noofstudents')";
 			
 			$select = "SELECT * FROM university WHERE name = '$name'";
-			$duplicateCheck = mysqli_query($conn,$select);
+			$duplicateCheck = mysqli_query($mysqli,$select);
 			
 			if (mysqli_num_rows($duplicateCheck)>=1)
 			{
@@ -45,7 +45,7 @@
 			
 			else
 			{
-				$result = mysqli_query($conn,$insert);
+				$result = mysqli_query($mysqli,$insert);
 				//If the query didn't process then
 				if (!$result)
 				{

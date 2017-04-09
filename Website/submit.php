@@ -1,7 +1,7 @@
 <?php
-
-	include 'navBarAdmin.html';
-	session_start();
+session_start();
+	include '../navbar/navbar.php';
+	
 	
 ?>
 <!DOCTYPE html>
@@ -14,19 +14,18 @@
         <title>University Submission</title>
         
         <style>
-            
+            *{
+                
+            }
             html
             {
                 margin: 0;
                 padding: 2px;
                 background-color: #777;
 				text-align: center;
-
+                background:url('http://clevertechie.com/img/bnet-bg.jpg') #0f2439 no-repeat center top;
             }
-			body
-			{
-				background:url('http://clevertechie.com/img/bnet-bg.jpg') #0f2439 no-repeat center top;
-			}
+		
             			
 			form 
 			{ 

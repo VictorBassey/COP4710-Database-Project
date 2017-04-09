@@ -7,7 +7,7 @@ $_SESSION['message'] = '';
 include "../Navbar/includes/dbh.php";
 
 // adds navbar to top of page
-include "../Navbar/navbar/navbar.php";
+include "../Navbar/navbar.php";
 ?>
 
 
