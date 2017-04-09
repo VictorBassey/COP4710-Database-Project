@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+		function initMap() {
+			var uluru = {lat: -25.363, lng: 131.044};
+			var map = new google.maps.Map(document.getElementById('map'), {
+			  zoom: 4,
+			  center: uluru
+			});
+			var marker = new google.maps.Marker({
+			  position: uluru,
+			  map: map
+			});
+		
+		
+		function downloadUrl(url,callback) {
+			var request = window.ActiveXObject ?
+			new ActiveXObject('Microsoft.XMLHTTP') :
+			new XMLHttpRequest;
+
+			request.onreadystatechange = function() {
+		    if (request.readyState == 4) {
+				request.onreadystatechange = doNothing;
+				callback(request, request.status);
+		}
+ };
+
+ request.open('GET', url, true);
+ request.send(null);
+}
+      }
+    </script>
+    <script async defer
+
+    src="https://maps.googleapis.com/maps/api/js?key= AIzaSyAh2e0Lhk2yflJBOITqe9xgyQ8w_ztEkdg &callback=initMap">
+    </script>
+  </body>
+</html>

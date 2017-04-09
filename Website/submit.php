@@ -1,4 +1,11 @@
+<?php
+
+	include 'navBarAdmin.html';
+	session_start();
+	
+?>
 <!DOCTYPE html>
+
 <html lang = "en">
     <head>
         <meta charset="UTF-8">
@@ -13,53 +20,14 @@
                 margin: 0;
                 padding: 2px;
                 background-color: #777;
+				text-align: center;
+
             }
-            body
-            {
-                width: 80%;
-                margin: 0 auto;
-                font-family:Arial,Helvetica,sans-serif;
-                font-size: 1em;
-                background: #FFFF;
-                border-bottom: 10px solid gold
-            }
-            
-            h1 
-            {
-                font-family: Georgia, "Times New Roman", serif;
-                font-size: 2em;
-                font-weight: bold;
-                font-style: bold;
-            }
-            
-            h2
-            {
-                color:red;
-                font-weight:normal;
-            }
-            
-            p
-            {
-                line-height: 1.6;
-                text-align: justify;
-            }
-			
-			table 
+			body
 			{
-				border: 2px solid red;
-				background-color: #FFC;
+				background:url('http://clevertechie.com/img/bnet-bg.jpg') #0f2439 no-repeat center top;
 			}
-            
-			th 
-			{
-				border-bottom: 5px solid #000;
-			}
-			
-			td
-			{
-				border-bottom: 2px solid #666;
-			}
-			
+            			
 			form 
 			{ 
 				margin: 0 auto; 
@@ -86,15 +54,11 @@
 			}
 			
         </style>
-        
     </head>
     <body>
         
         <h1 id="submit"> University Submission</h1>
         
-        <nav> 
-            <p>Site Navigation</p>
-        </nav>
         
 		<!--Sets up a form that a user will submit appropriate information in-->
 		<form action = "uniInfo.php" method="POST">
