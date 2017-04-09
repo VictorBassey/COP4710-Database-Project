@@ -46,7 +46,7 @@
         echo '<table class="table table-bordered table-hover myeventtable"><thead><tr><th>Link to Edit</th><th>Name</th></tr></thead><tbody>';
         
         while($row = mysqli_fetch_assoc($eventinfo)){
-        echo '<tr id=' . $row['eid'] . '><td><a href="editevent.php?id=' . $row['eid'] . '">Edit</a></td><td><a href="displayEvent.php?varname=' . $row['eid'] . '">'. $row['description'] . '</a></td></tr> ';
+        echo '<tr id=' . $row['eid'] . '><td><a href="editevent.php?id=' . $row['eid'] . '">Edit</a></td><td><a href="event_comments.php?varname=' . $row['eid'] . '">'. $row['description'] . '</a></td></tr> ';
       }
     
       echo '</tbody></table>';

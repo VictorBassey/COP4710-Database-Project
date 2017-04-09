@@ -65,9 +65,9 @@ $result = $mysqli->query($sql);
     {
         $row = mysqli_fetch_assoc($result);
         
-        echo '<tr><br>You have no RSOs</br><br><button type="submit" name="join"><a href="rso_create.php?id='.$uid.'">Create RSOs</a></button></tr><br>'; 
+        echo '<tr><br>You have no RSOs</br><br><button type="submit" name="join"><a href="../RSO/rso_create.php?id='.$uid.'">Create RSOs</a></button></tr><br>'; 
         
-        echo '<tr><br><button type="submit" name="join"><a href="join_rso.php?id='.$uid.'">Join RSOs</a></button></tr>'; 
+        echo '<tr><br><button type="submit" name="join"><a href="../RSO/rso_join.php?id='.$uid.'">Join RSOs</a></button></tr>'; 
     }
     else 
     {   
