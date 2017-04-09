@@ -99,7 +99,7 @@ CREATE TABLE events (
     time DATETIME NOT NULL,
     venuetype VARCHAR(20) NOT NULL,
     eventtype VARCHAR(20) NOT NULL,
-    location VARCHAR(255) NOT NULL,
+    location VARCHAR(1000) NOT NULL,
     approved BOOLEAN,
     PRIMARY KEY (eid),
     FOREIGN KEY (aid)
