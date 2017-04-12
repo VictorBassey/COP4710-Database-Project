@@ -22,6 +22,15 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
     </head>
+    <link rel="stylesheet" type="text/css"
+    href="../Events/eventstyle.css">
+    
+     <p>Date/Time: <span id="datetime"></span></p>
+
+    <script>
+        var dt = new Date();
+        document.getElementById("datetime").innerHTML = dt.toLocaleDateString();
+    </script>
     
 <body>
     <center><h3>View Events</h3></center>
@@ -33,19 +42,11 @@
         </form>
     </div>
     
-    <div class="date">
-        <p id="date"></p>
-        <script>
-        document.getElementById("date").innerHTML = Date();
-        </script>
-    </div>
-    
     <div class="dropdown"> 
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> View By... 
         <span class="caret"></span> 
         </button> 
         <ul class="dropdown-menu" role="menu" style="overflow-y: hidden;"> 
-            <li class="active"><a href="/">Day View</a></li>
             <li> <a href="public_event.php">public</a> </li> 
             <li> <a href="rso_event.php">RSO</a> </li> 
             <li> <a href="priv_event.php">Private</a> </li> 
@@ -55,11 +56,20 @@
 <?php 
         
 //Public events
-echo '<br><center><label>Your Private Events</label>';
-    
-//$uid = $_SESSION['uid']; 
+echo '<br><center><h1>Private Events</h1>';
 
-$sql ="SELECT * FROM events WHERE eventtype='private'";
+   //checked if logged in
+    if(!isset($_SESSION['username'])) {
+      echo '<h1>Sorry, you must be logged in to view this event.</h1>';
+      echo '</div></div></body></html>';
+      die();
+    }
+
+$username = $_SESSION['username'];
+//get user id
+ $uid = "SELECT uid FROM userWHERE name = '$username'";
+
+$sql ="SELECT * FROM events WHERE eventtype='private' AND rsoid IN (SELECT rsoid FROM memberof uid='$uid')"; 
 
 $result = $mysqli->query($sql); 
 
@@ -87,7 +97,7 @@ $result = $mysqli->query($sql);
                 <td>'.$row['eventtype'].'</td>
                 <td>'.$row['location'].'</td>
                 <td>'.$row['time'].'</td>
-                <td><h3><a href="displayEvent.php?varname='.$row['eid'].'">Display</a></h3></td></tr>';
+                <td><h3><a href="event_comments.php?varname='.$row['eid'].'">Display</a></h3></td></tr>';
             echo'</table>';
     }
 ?>
