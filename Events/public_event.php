@@ -58,7 +58,6 @@
 <div>
     
 <?php       
-    
 //Public events
 echo '<br><center><h1>Public Events</h1>';
 
