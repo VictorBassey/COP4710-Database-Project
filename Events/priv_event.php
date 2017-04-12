@@ -54,7 +54,7 @@
     </div>
     
 <?php 
-        
+    
 //Public events
 echo '<br><center><h1>Private Events</h1>';
 
@@ -67,9 +67,9 @@ echo '<br><center><h1>Private Events</h1>';
 
 $username = $_SESSION['username'];
 //get user id
- $uid = "SELECT uid FROM userWHERE name = '$username'";
+ $uid = "SELECT uid FROM user WHERE name = '$username'";
 
-$sql ="SELECT * FROM events WHERE eventtype='private' AND rsoid IN (SELECT rsoid FROM memberof uid='$uid')"; 
+$sql ="SELECT * FROM events WHERE eventtype='private' AND eid IN (SELECT eid FROM registered WHERE uid = '$uid')"; 
 
 $result = $mysqli->query($sql); 
 
