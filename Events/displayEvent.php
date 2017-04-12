@@ -1,8 +1,10 @@
+<html>
 <?php 
     session_start();
     include'../navbar/navbar.php';
     include'../navbar/includes/dbh.php';
     ?>
+
 <head>
   <title>UCF Events</title>
   <meta charset="utf-8">
@@ -11,6 +13,9 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css"
+href="../Events/eventstyle.css">
   
 </head>
 
@@ -35,9 +40,7 @@
 <div class="events">
 
 <?php
-	//get all info on the Event, check if it exists
-    
-    
+    //get all info on the Event, check if it exists
     $id = $_GET['varname'];
     
     $_SESSION['eid'] = $id;
@@ -83,7 +86,7 @@
 <button type="button" class="btn btn-default btn-sm" onclick="rate(5);">5
   <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 </button>
-
+</div>
 <div class="rating-result">
 <?php
     //print out the current rating
@@ -110,5 +113,6 @@
     }
 ?>
 </div>
+</div> 
 </body>
 </html>
