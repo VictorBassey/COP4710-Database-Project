@@ -15,13 +15,8 @@
   <link rel="stylesheet" href="css/admin.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/eventPanel.css">
+  <link rel="stylesheet" type="text/css" href="../Events/eventstyle.css">
   
-  <?php
-    //always call session_start() before accessing any session variables
-		if (session_status() == PHP_SESSION_NONE) {
-   			session_start();
-		}
-  ?>
 </head>
 
 <body>
@@ -31,32 +26,44 @@
   <div class="events">
     
       
-      <h2>Edit an Event</h2>
+      <h2>Edit Event Selected</h2>
     
     <?php
-      //fetch event information
+      include'dbh.php';
+      //checked if logged in
+    if(!isset($_SESSION['username'])) {
+      echo '<h1>Sorry, you must be logged in to view this event.</h1>';
+      echo '</div></div></body></html>';
+      die();
+    }
       
       $eid =$mysqli->real_escape_string($_GET['id']);
-      //now connect to the database
       
+      $_SESSION['eid'] = $eid;
+      //now connect to the database
       $sql = "SELECT * FROM events WHERE eid ='$eid'";
       $result = $mysqli->query($sql);
+      
       //check if this is actually an event
       if($result->num_rows == 0){
         echo '<h1>Sorry, there is no event associated with this ID!</h1>';
         echo '</div></div></div></body></html>';
         die();
-        
-        
+          
       }
       
-      $eventinfo = $result->fetch_assoc();
+        $eventinfo = $result->fetch_assoc();
         ?>
+      
         <br/>
         <br/>
         <div class="event_forms">
+            
+        <form action="edit_query.php" method="post">
+            
+        <label for="inputName" class="sr-only">Location</label>
+        <input type="text" name="location" class="form-control" placeholder="Location" required autofocus>
         
-        <form action="edit.php" method="post">
            <label for="inputName" class="sr-only">Event Name</label>
         <input type="text" name="venuetype" class="form-control" placeholder="Event Name" required autofocus>
         
