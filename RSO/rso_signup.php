@@ -38,6 +38,13 @@ include "../Navbar/navbar/navbar.php";
     $uid_array = mysqli_query($mysqli, $uid);
     $uid_result = mysqli_fetch_assoc($uid_array);
     $user_id = $uid_result['uid'];
+	  
+    $u_email = "SELECT email 
+            FROM user
+            WHERE name = '$username'";
+    $u_email_array = mysqli_query($mysqli, $u_email);
+    $u_email_result = mysqli_fetch_assoc($u_email_array);
+    $user_email = $u_email_result['email'];
        
     $sql = "SELECT * 
             FROM rso 
@@ -53,6 +60,7 @@ include "../Navbar/navbar/navbar.php";
     $e5 = $_POST['email_5'];
     
     //gets domains
+    $domain_user = substr(strrchr($user_email, "@"), 1);
     $domain_1 = substr(strrchr($e1, "@"), 1);
     $domain_2 = substr(strrchr($e2, "@"), 1);
     $domain_3 = substr(strrchr($e3, "@"), 1);
@@ -97,7 +105,7 @@ include "../Navbar/navbar/navbar.php";
     }
       
     //check that all emails have same domain
-    if (($domain_1 == $domain_2) && ($domain_1 == $domain_3) && ($domain_1 == $domain_4) && ($domain_1 == $domain_5)){
+    if (($domain_1 == $domain_user) && ($domain_1 == $domain_2) && ($domain_1 == $domain_3) && ($domain_1 == $domain_4) && ($domain_1 == $domain_5)){
         $email_check = True;
     }
     else{
