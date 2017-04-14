@@ -2,22 +2,27 @@
 <link rel="stylesheet" type="text/css"
 href="../Events/eventstyle.css">
 </div>
-<?php 
 
+<?php 
     session_start();
     include'../navbar/navbar.php';
-    include'../navbar/includes/dbh.php';
+    include'../navbar/includes/dbh.php';    
 
-//if logged in 
-if(!isset($_SESSION['username'])) {
-      echo '<h1>Sorry, you must be logged in to view this event.</h1>';
+if(!isset($_SESSION['username'])) 
+{
+      echo '<h1>Sorry, you must be logged in.</h1>';
       echo '</div></div></body></html>';
       die();
-    }
+}
 
 $username = $_SESSION['username'];
-//get user id
+
 $uid = "SELECT uid FROM user WHERE name = '$username'";
+
+$uid1 = "SELECT uid FROM user WHERE name = '$username'";
+$result1 = $mysqli->query($uid1);
+$resultRow = mysqli_fetch_assoc($result1); 
+$uid = $resultRow['uid'];
 
 $location = $mysqli->real_escape_string($_POST['location']); 
 $venuetype = $mysqli->real_escape_string($_POST['venuetype']); 
@@ -25,52 +30,61 @@ $time = $mysqli->real_escape_string($_POST['time']);
 $description = $mysqli->real_escape_string($_POST['description']); 
 $eventtype = $mysqli->real_escape_string($_POST['event_type']); 
 
-if($eventtype == 'rso'){
+if($eventtype == 'RSO')
     
-$rsoid = $mysqli->real_escape_string($_POST['rso']);
+{
+    $rsoid = $mysqli->real_escape_string($_POST['RSO']);
 
-$sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
+    $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
 
-echo'you successfully created a rso event';
     
-echo'<br><br><br>';
-//go back to event panel through this button
-echo'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php">Go back To Event Panel</a>
+    if ($mysqli->query($sql))
+    {
+        echo 'you sucessfully created an RSO event';
+        echo'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php">Go back To Event Panel</a>
+        <span class="caret"></span>                 </button>';
+    }
+    else 
+    {
+        echo'you could not create an event'; 
+        echo'<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php">Go back To Event Panel</a>
         <span class="caret"></span> 
         </button>';
+    }
 }
 else
 {
-//select a random rsoid  from rso table
-$sql = "SELECT rsoid FROM manages ORDER BY RAND() LIMIT 1";
-    
-$result = $mysqli->query($sql); 
-$row = mysqli_fetch_assoc($result); 
-$rsoid = $row['rsoid']; 
+    //select a random rsoid  from rso table
+    $sql1 = "SELECT rsoid FROM manages ORDER BY RAND() LIMIT 1";
 
-    //check if there's any row
-    if(!($result->num_rows == 0))
-    {
-    $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
-        
-    echo'you successfully crated a event';
-        
-    echo'<br><br><br>';
-    //go back to event panel through this button
-    echo'<button type="button" class="button" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php">Go back To Event Panel</a>
-        <span class="caret"></span> 
-        </button>';
-    
-    }
-    else
-    {
-        'You could not create a event, try another one';
-        
-        echo'<br><br><br>';
-        //go back to event panel through this button
-        echo'button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php" style="text-decoration: none">Go back To View Events</a>
-        <span class="caret"></span> 
-        </button>';
-    }
+    $result = $mysqli->query($sql1); 
+    $row = mysqli_fetch_assoc($result); 
+    $rsoid = $row['rsoid']; 
+        //check if there's any row
+        if(!($result->num_rows == 0))
+        {
+        $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
+
+
+            if($mysqli->query($sql))
+            {
+             echo'<br><br><br>';
+            //go back to event panel through this button
+            echo'you sucessfully created an event';
+            echo'<button type="button" class="button" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php">Go back To Event Panel</a>
+                <span class="caret"></span> 
+                </button>';
+            }   
+            else
+            {
+                echo'<br><br><br>';
+                
+                echo "Your event could not be created.";
+                
+                echo'<button type="button" class="button" data-toggle="dropdown" aria-expanded="true"><a href="create_event.php">Go back To Event Panel</a>
+                <span class="caret"></span> 
+                </button>';
+            }
+        }
 }
 ?>
