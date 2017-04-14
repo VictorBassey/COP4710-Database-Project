@@ -56,8 +56,8 @@ include '../Navbar/includes/dbh.php';
       
 ?>
   
-<a href="http://twitter.com/share?text=I have joined the following RSO: <?php echo $rso_name;?>. Check it out!" 
-class="twitter-share-button" data-url="h" data-count="vertical">Tweet</a>
+<a href="http://twitter.com/share?text=I have joined the following RSO: 
+<?php echo $rso_name;?>. Check it out!" class="twitter-share-button" data-url="h" data-count="vertical">Tweet</a>
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
       
       
