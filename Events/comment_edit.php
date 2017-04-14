@@ -3,16 +3,17 @@
     date_default_timezone_set('America/New_York');
 include "../Navbar/navbar.php";    
 include '../Navbar/includes/dbh.php';
-
+    
 
 if(isset($_POST['commentSubmit'])){
-                header("Location:event_comments.php");
+                //header("Location:event_comments.php");
+                 ?><script type="text/javascript">location.href = 'event_comments.php';</script><?php
             }
 
   function getComment($mysqli){
        // $eid = $_SESSION['eid'];
         // $eid = $_POST['eid'];
-        $commentid = 3;
+        $commentid = 1;
       // HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!
         $sql = "SELECT * FROM comment WHERE commentid= '$commentid'";
         $result = mysqli_query($mysqli, $sql);
@@ -21,6 +22,7 @@ if(isset($_POST['commentSubmit'])){
         if(mysqli_num_rows($result)>0){
             $row = $result ->fetch_assoc();
             $commentContents = $row['comment'];
+            $_SESSION['commentContents'] = $commentContents;
             /*
             while($row = $result ->fetch_assoc()){
                 echo "<div class='comment-box'><p>";
@@ -38,6 +40,7 @@ if(isset($_POST['commentSubmit'])){
         */
         } else{
             $commentContents = "Comment could not be found!" ;
+            $_SESSION['commentContents'] = $commentContents;
         }
     }
 
@@ -49,8 +52,8 @@ if(isset($_POST['commentSubmit'])){
                 //$eid = $_SESSION['eid'];
                 
                 //HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!
-                $eid = 1;
-                $commentid = 3;
+                $eid = $_SESSION['eid'];
+                $commentid = 1;
                 $message = $_POST['message'];
 
                 //inserts data to the database
@@ -76,8 +79,8 @@ if(isset($_POST['commentSubmit'])){
 
 
 
-
-    $eid = 1;
+    $eid = $_SESSION['eid'];
+    
         // $eid = $_SESSION['eid'];
         $sql = "SELECT * FROM events WHERE eid = '$eid'";
         $result = mysqli_query($mysqli, $sql);
@@ -95,6 +98,8 @@ if(isset($_POST['commentSubmit'])){
         }else{
             echo "No event with that Event ID Exists!";
         }
+
+$commentContents = $_SESSION['commentContents'];
 
 ?>
 <!DOCTYPE html>
@@ -227,7 +232,7 @@ ul{
    echo" <form method='POST' action='".setComment($mysqli)."'>
         <input type='hidden' name='uid' value='Anonymous'>
         <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
-        <textarea name='message'></textarea><br>
+        <textarea name='message' input type ='text' placeholder = '$commentContents' ></textarea><br>
         <button class='commentsubmit' type='submit' name='commentSubmit'>Change Comment</button>
     </form>";
     

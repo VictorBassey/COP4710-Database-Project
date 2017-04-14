@@ -3,7 +3,10 @@
     date_default_timezone_set('America/New_York');
 include "../Navbar/navbar.php";    
 include '../Navbar/includes/dbh.php';
-    
+  
+        if(isset($_POST['commentEdit'])){
+            
+        }
     
     
 
@@ -29,7 +32,8 @@ include '../Navbar/includes/dbh.php';
     function getComments($mysqli){
        // $eid = $_SESSION['eid'];
         // $eid = $_POST['eid'];
-        $eid = 1;
+        $eid = $_GET['varname'];
+        //$eid = 1;
         $sql = "SELECT * FROM comment WHERE eid= '$eid'";
         $result = mysqli_query($mysqli, $sql);
         // pulls results from the db until there is no 
@@ -44,7 +48,8 @@ include '../Navbar/includes/dbh.php';
                     // them to proper breaks 
                     echo nl2br($row['comment']);
                     echo "<br>";
-                    echo "<button class='commentedit' type='submit' name='commentSubmit'>Comment</button>";
+                    echo "<button class='commentedit' type='submit' name='commentEdit'>Comment</button>"; 
+                   // echo <a></a>
                 echo "<p></div>";
 
             }
@@ -54,7 +59,8 @@ include '../Navbar/includes/dbh.php';
     }
 
 // Query and code to set event details!!!!!!!!!!!
-        $eid = 1;
+        $eid = $_GET['varname'];
+        $_SESSION['eid'] = $eid;
         // $eid = $_SESSION['eid'];
         $sql = "SELECT * FROM events WHERE eid = '$eid'";
         $result = mysqli_query($mysqli, $sql);
@@ -221,6 +227,7 @@ ul{
     </form>";
     
 getComments($mysqli)
+
 ?>
 </body>
 

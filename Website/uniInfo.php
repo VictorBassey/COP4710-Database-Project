@@ -39,7 +39,7 @@
 				echo nl2br ("This university has already been added to the database. \n");
 				//Informs the user they are about to be redirected
 				echo "\n Redirecting...";
-				header ("refresh:3;url=http://localhost:8081/website/university.php" );
+				header ("refresh:3;url=http://localhost/COP4710-Database-Project/Website/university.php" );
 				die();
 			}
 			
@@ -62,7 +62,7 @@
 				echo "\n Redirecting...";
 				
 				//Redirects the user back to the university page with a delay of 5 seconds
-				header ("refresh:3;url=http://localhost:8081/website/university.php" );
+				header ("refresh:3;url=http://localhost/COP4710-Database-Project/Website/university.php" );
 				die();
 			}
 		?>
