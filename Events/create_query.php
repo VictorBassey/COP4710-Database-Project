@@ -17,7 +17,7 @@ if(!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username'];
 //get user id
-$uid = "SELECT uid FROM userWHERE name = '$username'";
+$uid = "SELECT uid FROM user WHERE name = '$username'";
 
 $location = $mysqli->real_escape_string($_POST['location']); 
 $venuetype = $mysqli->real_escape_string($_POST['venuetype']); 
@@ -31,7 +31,7 @@ $rsoid = $mysqli->real_escape_string($_POST['rso']);
 
 $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
 
-echo'you successfully crated a rso event';
+echo'you successfully created a rso event';
     
 echo'<br><br><br>';
 //go back to event panel through this button

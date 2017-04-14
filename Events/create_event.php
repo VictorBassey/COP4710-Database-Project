@@ -54,7 +54,8 @@ href="../Events/eventstyle.css">
   <div class="eventtable">
   
   <?php 
-    include 'dbh.php';
+      
+    include '../Navbar/includes/dbh.php';
     //checked if logged in
       if(!isset($_SESSION['username'])) {
       echo '<h1>Sorry, you must be logged in to view this event.</h1>';
@@ -62,10 +63,8 @@ href="../Events/eventstyle.css">
       die();
     }
         
-    //get user id
-    $uid = "SELECT uid FROM userWHERE name = '$username'";
-    //get a session var for user id
-    $_SESSION['uid'] = $uid;
+    $uid = $_SESSION['uid'];
+    
       
     $sql="SELECT description, eid FROM events WHERE aid = '$uid'";
       
@@ -83,7 +82,8 @@ href="../Events/eventstyle.css">
     }
     else
     {
-    header('location: noadmin.php');
+    //header('location: noadmin.php');
+      ?><script type="text/javascript">location.href = 'noadmin.php';</script><?php
     }
       echo '</tbody></table>';
   ?>

@@ -3,7 +3,7 @@
  <?php 
     session_start();
     include'../navbar/navbar.php';
-    include'../navbar/includes/dbh.php';
+    
     ?>
 <head>
   <title>UCF Events</title>
@@ -53,7 +53,7 @@
     
 <div class="container">
 <?php       
-    
+    include'../navbar/includes/dbh.php';
    //checked if logged in
     if(!isset($_SESSION['username'])) {
       echo '<h1>Sorry, you must be logged in to view this event.</h1>';
@@ -64,18 +64,32 @@
 echo'<br><center><h1>RSO Events</h1>';
 
 $username = $_SESSION['username'];
+    //echo $username;
     
-$uid = "SELECT uid FROM userWHERE name = '$username'";
+$uid = "SELECT uid FROM user WHERE name = '$username'";
     
-$sql = "SELECT * FROM events WHERE eventtype = 'rso' AND rsoid IN (SELECT rsoid FROM memberof WHERE uid='$uid')";
+    $result1 = $mysqli->query($uid);
+    //echo $result1;
+$resultRow = mysqli_fetch_assoc($result1);    
+    //echo $resultRow;
+    
+    $uid1 = $resultRow['uid'];
+    
+    //echo $uid1;
+    
+$sql = "SELECT * FROM events WHERE eventtype = 'RSO' AND rsoid IN (SELECT rsoid FROM memberof WHERE uid='$uid1')";
+    
 
 $result = $mysqli->query($sql);
+    if(!$result){
+        echo "no likey";
+    }
     
     if($result->num_rows == 0)
     {
         $row = mysqli_fetch_assoc($result);
         
-        echo '<tr><br><button type="submit" name="join"><a href="rso_join.php">Join RSOs</a></button></tr>'; 
+        echo '<tr><br><button type="submit" name="join"><a href="../RSO/rso_index.php">Join RSOs</a></button></tr>'; 
     }
     else
     {

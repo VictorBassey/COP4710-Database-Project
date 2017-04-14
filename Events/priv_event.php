@@ -73,7 +73,7 @@ $sql ="SELECT * FROM events WHERE eventtype='private' AND eid IN (SELECT eid FRO
 
 $result = $mysqli->query($sql); 
 
-    if($result->num_rows == 0)
+    if($result->mysqli_num_rows == 0)
     {
         echo'No private events found'; 
     }
