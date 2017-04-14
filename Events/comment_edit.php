@@ -3,58 +3,81 @@
     date_default_timezone_set('America/New_York');
 include "../Navbar/navbar.php";    
 include '../Navbar/includes/dbh.php';
-    
-    
-    
 
-    // refrences to a variable outside of function $mysqli
-    function setComments($mysqli){
-        // checks to see if commentSubmit button has been set
-        if(isset($_POST['commentSubmit'])){
-            // grabs data from url or Session vars
-            $uid = $_SESSION['uid'];
-            //$eid = $_SESSION['eid'];
-            $eid = $_POST['varname'];
-            $_SESSION['eid'] = $eid;
-            $message = $_POST['message'];
 
-            //inserts data to the database
-            $sql = "INSERT INTO comment (uid, eid, comment) 
-            Values ('$uid', '$eid', '$message')";
+if(isset($_POST['commentSubmit'])){
+                header("Location:event_comments.php");
+            }
 
-            $result = mysqli_query($mysqli, $sql);
-        }
-    }
-
-    function getComments($mysqli){
+  function getComment($mysqli){
        // $eid = $_SESSION['eid'];
         // $eid = $_POST['eid'];
-        $eid = 1;
-        $sql = "SELECT * FROM comment WHERE eid= '$eid'";
+        $commentid = 3;
+      // HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!
+        $sql = "SELECT * FROM comment WHERE commentid= '$commentid'";
         $result = mysqli_query($mysqli, $sql);
         // pulls results from the db until there is no 
         // results left
         if(mysqli_num_rows($result)>0){
-        
+            $row = $result ->fetch_assoc();
+            $commentContents = $row['comment'];
+            /*
             while($row = $result ->fetch_assoc()){
                 echo "<div class='comment-box'><p>";
                     echo $row['uid']."<br>";
                     echo $row['ctime']."<br>";
                     // searches for new lines in message and converts
                     // them to proper breaks 
-                    echo nl2br($row['comment']);
-                    echo "<br>";
-                    echo "<button class='commentedit' type='submit' name='commentSubmit'>Comment</button>";
+                    echo nl2br($row['comment']); 
                 echo "<p></div>";
 
             }
         } else{
-            echo "No comments have been made. Be the first to comment now!";
+            echo "Comment could not be found!";
+        }
+        */
+        } else{
+            $commentContents = "Comment could not be found!" ;
         }
     }
 
-// Query and code to set event details!!!!!!!!!!!
-        $eid = 1;
+    function setComment($mysqli){
+            // checks to see if commentSubmit button has been set
+            if(isset($_POST['commentSubmit'])){
+                // grabs data from url or Session vars
+                $uid = $_SESSION['uid'];
+                //$eid = $_SESSION['eid'];
+                
+                //HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!
+                $eid = 1;
+                $commentid = 3;
+                $message = $_POST['message'];
+
+                //inserts data to the database
+                $sql = "UPDATE comment SET comment = '$message' WHERE comment.commentid = '$commentid'"; 
+                
+
+                $result = mysqli_query($mysqli, $sql);
+                
+               
+                
+            }
+        
+           /* if(isset($_POST['commentSubmit'])){
+                header("Location:event_comments.php");
+            }
+            */
+        }
+
+
+
+
+
+
+
+
+
+    $eid = 1;
         // $eid = $_SESSION['eid'];
         $sql = "SELECT * FROM events WHERE eid = '$eid'";
         $result = mysqli_query($mysqli, $sql);
@@ -72,10 +95,8 @@ include '../Navbar/includes/dbh.php';
         }else{
             echo "No event with that Event ID Exists!";
         }
-    
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,16 +111,16 @@ include '../Navbar/includes/dbh.php';
    
 textarea{
     width: 50%;
-    margin-top: 3%;
+    margin-top: 1%;
     margin-left: 25%;
     margin-bottom: 0%;
     height: 80px;
-    background-color: #333;
+    background-color: #fff;
     resize:none;
 }
 
 .commentsubmit {
-    width: 100px;
+    width: 150px;
     height: 30px;
     margin-left: 25%;
     margin-bottom: 2%;
@@ -111,24 +132,14 @@ textarea{
     cursor: pointer;
     
 }
-
-.commentedit{
-    width: 150px;
-    height: 20px;
-    margin-left: 0%;
-    margin-bottom: 0%;
-    background-color: #333;
-    border: none;
-    color: #fff;
-    font-family: arial;
-    font-weight: 400;
-    cursor: pointer;
-        }
-
+h3{
+    margin-left: 25%;
+    margin-top: 2%;
+}
+        
 .comment-box{
     width: 40%;
     padding: 20px;
-    padding-bottom: 10px;
     margin-bottom: 4px;
     background-color: #fff;
     border-radius: 4px;
@@ -147,7 +158,7 @@ textarea{
     width: 60%;
     padding: 20px;
      padding-top: 2px;
-    margin-bottom: 4px;
+    margin-bottom: px;
     background-color: #333;
     border-radius: 4px;  
 }
@@ -200,7 +211,7 @@ ul{
                     //echo nl2br($description); 
             echo "</ul>";
                 echo "<p></div>";
-    
+    echo "<h3>Change Comment</h3>";
    /* echo"
     <h1>Event Details</h1>
     <ul>
@@ -213,14 +224,14 @@ ul{
     ";
     */
     
-   echo" <form method='POST' action='".setComments($mysqli)."'>
+   echo" <form method='POST' action='".setComment($mysqli)."'>
         <input type='hidden' name='uid' value='Anonymous'>
         <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
         <textarea name='message'></textarea><br>
-        <button class='commentsubmit' type='submit' name='commentSubmit'>Comment</button>
+        <button class='commentsubmit' type='submit' name='commentSubmit'>Change Comment</button>
     </form>";
     
-getComments($mysqli)
+getComment($mysqli)
 ?>
 </body>
 
