@@ -93,7 +93,7 @@ include "../Navbar/navbar/navbar.php";
     else{
        $usernames_check = False;
        $_SESSION['message'] = "Emails must be different";
-       header("location: rso_create_fail.php");
+       ?><script type="text/javascript">location.href = 'rso_create_fail.php';</script><?php
     }
       
     //check that all emails have same domain
@@ -103,7 +103,7 @@ include "../Navbar/navbar/navbar.php";
     else{
        $email_check = False;
        $_SESSION['message'] = "Emails must have same domain";
-       header("location: rso_create_fail.php");
+       ?><script type="text/javascript">location.href = 'rso_create_fail.php';</script><?php
     }
       
     //Checks university exists
@@ -119,7 +119,7 @@ include "../Navbar/navbar/navbar.php";
     if(mysqli_num_rows ($univid_array) == 0){
         $uni_check = False;
         $_SESSION['message'] = "University not in database";
-        header("location: rso_create_fail.php");
+        ?><script type="text/javascript">location.href = 'rso_create_fail.php';</script><?php
     }
     else{
         $uni_check = True;
@@ -174,7 +174,7 @@ include "../Navbar/navbar/navbar.php";
     //Else, RSO name taken already
     else if (mysqli_num_rows ($rows) > 0){
         $_SESSION['message'] = "RSO Name already taken";
-        header("location: rso_create_fail.php");
+        ?><script type="text/javascript">location.href = 'rso_create_fail.php';</script><?php
 
     }
 
