@@ -6,7 +6,7 @@ $_SESSION['message'] = '';
 //$mysqli = new mysqli('localhost', 'root', '', 'eventdb');
 include "../Navbar/includes/dbh.php";
 // adds navbar to top of page
-include "../Navbar/navbar/navbar.php";
+include "../Navbar/navbar.php";
 ?>
 
 
@@ -92,6 +92,20 @@ include "../Navbar/navbar/navbar.php";
     $three_five = ($user3 != $user5);
     $four_five = ($user4 != $user5);
     
+    //check emails exist in database
+    $emails = "SELECT email 
+               FROM user
+               WHERE email = '$e1' OR email = '$e2' OR email = '$e3' OR email = '$e4' OR email = '$e5'";
+    $email_array = mysqli_query($mysqli, $emails);
+    
+    if(mysqli_num_rows ($email_array) != 5){
+        $user_email_check = False;
+        $_SESSION['message'] = "Emails not in database";
+        ?><script type="text/javascript">location.href = 'rso_create_fail.php';</script><?php
+    }
+    else{
+        $user_email_check = True;
+    }
     
     
     if($one_two && $one_three && $one_four && $one_five && $two_three && $two_four && $two_five && $three_four && $three_five && $four_five){
@@ -135,7 +149,7 @@ include "../Navbar/navbar/navbar.php";
     
        
     //Name for RSO isnt taken and other qualifications match
-    if (mysqli_num_rows ($rows) == 0 && ($email_check == True) && ($uni_check == True) && ($usernames_check == True))
+    if (mysqli_num_rows ($rows) == 0 && ($email_check == True) && ($uni_check == True) && ($usernames_check == True) && ($user_email_check == True))
     {
         //insert rso into databse
         $sql2 = "INSERT INTO rso (name) 
