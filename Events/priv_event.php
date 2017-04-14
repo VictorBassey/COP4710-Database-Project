@@ -64,10 +64,14 @@ echo '<br><center><h1>Private Events</h1>';
       echo '</div></div></body></html>';
       die();
     }
-
+    
+//USER INFO
 $username = $_SESSION['username'];
-//get user id
- $uid = "SELECT uid FROM user WHERE name = '$username'";
+
+$uid1 = "SELECT uid FROM user WHERE name = '$username'";
+$result1 = $mysqli->query($uid1);
+$resultRow = mysqli_fetch_assoc($result1); 
+$uid = $resultRow['uid'];
 
 $sql ="SELECT * FROM events WHERE eventtype='private' AND eid IN (SELECT eid FROM registered WHERE uid = '$uid')"; 
 

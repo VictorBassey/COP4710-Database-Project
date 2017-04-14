@@ -63,14 +63,14 @@
 
 echo'<br><center><h1>RSO Events</h1>';
 
-$username = $_SESSION['username'];
+    $username = $_SESSION['username'];
     //echo $username;
     
-$uid = "SELECT uid FROM user WHERE name = '$username'";
+    $uid = "SELECT uid FROM user WHERE name = '$username'";
     
     $result1 = $mysqli->query($uid);
     //echo $result1;
-$resultRow = mysqli_fetch_assoc($result1);    
+    $resultRow = mysqli_fetch_assoc($result1);    
     //echo $resultRow;
     
     $uid1 = $resultRow['uid'];
