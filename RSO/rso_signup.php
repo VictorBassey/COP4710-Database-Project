@@ -152,6 +152,11 @@ include "../Navbar/navbar/navbar.php";
         $rso_id_array = mysqli_query($mysqli, $rid);
         $rso_id_result = mysqli_fetch_assoc($rso_id_array);
         $rso_id = $rso_id_result['rsoid'];
+	    
+	  //make user memeber of RSO
+        $mem = "INSERT INTO memberof (uid, rsoid) 
+        VALUES ('$user_id','$rso_id')";
+        mysqli_query($mysqli, $mem);
         
         //Next Step: affiliate RSO and University
         $aff = "INSERT INTO rsoaffiliation (rsoid, univid) VALUES ('$rso_id', '$univ_id')";
