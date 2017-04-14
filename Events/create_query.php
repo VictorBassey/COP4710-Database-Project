@@ -17,8 +17,6 @@ if(!isset($_SESSION['username']))
 
 $username = $_SESSION['username'];
 
-$uid = "SELECT uid FROM user WHERE name = '$username'";
-
 $uid1 = "SELECT uid FROM user WHERE name = '$username'";
 $result1 = $mysqli->query($uid1);
 $resultRow = mysqli_fetch_assoc($result1); 

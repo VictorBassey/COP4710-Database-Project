@@ -62,9 +62,11 @@ href="../Events/eventstyle.css">
       echo '</div></div></body></html>';
       die();
     }
-        
-    $uid = $_SESSION['uid'];
-    
+    //USER INFO
+    $uid1 = "SELECT uid FROM user WHERE name = '$username'";
+    $result1 = $mysqli->query($uid1);
+    $resultRow = mysqli_fetch_assoc($result1); 
+    $uid = $resultRow['uid'];
       
     $sql="SELECT description, eid FROM events WHERE aid = '$uid'";
       
@@ -82,8 +84,7 @@ href="../Events/eventstyle.css">
     }
     else
     {
-    //header('location: noadmin.php');
-      ?><script type="text/javascript">location.href = 'noadmin.php';</script><?php
+        header('location: noadmin.php');
     }
       echo '</tbody></table>';
   ?>
@@ -102,7 +103,7 @@ href="../Events/eventstyle.css">
     <input type="radio" name="event_type" id="Radio2" value="private" onClick="rsoDropdown('priv');" > Private
     </label>
     <label class="radio-inline">
-    <input type="radio" name="event_type" id="Radio3" value="rso" onClick="rsoDropdown('rso');" > RSO
+    <input type="radio" name="event_type" id="Radio3" value="RSO" onClick="rsoDropdown('rso');" > RSO
     </label>
       
     <br>  
@@ -119,7 +120,11 @@ href="../Events/eventstyle.css">
     }
         
     //get user id
-    $uid = "SELECT uid FROM userWHERE name = '$username'";
+    $uid = "SELECT uid FROM user WHERE name = '$username'";
+    $uid1 = "SELECT uid FROM user WHERE name = '$username'";
+    $result1 = $mysqli->query($uid1);
+    $resultRow = mysqli_fetch_assoc($result1); 
+    $uid = $resultRow['uid'];
         
       //now connect to the database
      $sql = "SELECT rsoid, name FROM rso WHERE rsoid IN (SELECT rsoid FROM manages WHERE aid = '$uid')"; 
