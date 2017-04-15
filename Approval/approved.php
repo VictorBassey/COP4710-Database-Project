@@ -7,7 +7,7 @@ include '../Navbar/includes/dbh.php';
 
 $_SESSION['message'] = '';
 
-$sql = 'SELECT * FROM events WHERE approved = 0';
+$sql = 'SELECT * FROM events WHERE approved IS NULL';
 
 $results = mysqli_query($mysqli, $sql);
 
@@ -16,7 +16,7 @@ $results = mysqli_query($mysqli, $sql);
 <!DOCTYPE html>
 <html>
 <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="signupStyle.css" type="text/css">
+<link rel="stylesheet" href="../Navbar/Signup/signupStyle.css" type="text/css">
 <body>
 <div class="body-content">
   <div class="module">

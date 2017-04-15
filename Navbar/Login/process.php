@@ -58,7 +58,7 @@ $user = "SELECT * FROM user WHERE name = '$username' and password = '$password'"
        
        $_SESSION['message'] = "Login Succesful! Welcome back.";
        
-       header("location: ../welcome.php");
+       header("location: ../../Events/public_event.php");
        die();
       
     }else{
