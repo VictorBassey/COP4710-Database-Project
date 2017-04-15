@@ -63,6 +63,7 @@ href="../Events/eventstyle.css">
       die();
     }
     //USER INFO
+    $username = $_SESSION['username'];
     $uid1 = "SELECT uid FROM user WHERE name = '$username'";
     $result1 = $mysqli->query($uid1);
     $resultRow = mysqli_fetch_assoc($result1); 
@@ -79,13 +80,11 @@ href="../Events/eventstyle.css">
         echo '<table class="table table-bordered table-hover myeventtable"><thead><tr><th>Link to Edit</th><th>Name</th></tr></thead><tbody>';
         
         while($row = mysqli_fetch_assoc($eventinfo)){
-        echo '<tr id=' . $row['eid'] . '><td><a href="editevent.php?id=' . $row['eid'] . '">Edit</a></td><td><a href="displayEvent.php?varname=' . $row['eid'] . '">'. $row['description'] . '</a></td></tr> ';
+        echo '<tr id=' . $row['eid'] . '><td><a href="editevent.php?id=' . $row['eid'] . '">Edit</a></td><td><a href="event_comments.php?varname=' . $row['eid'] . '">'. $row['description'] . '</a></td></tr> ';
       }
     }
     else
-    {
-        header('location: noadmin.php');
-    }
+      echo 'you do not own events at this moment';
       echo '</tbody></table>';
   ?>
   </div>

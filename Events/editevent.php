@@ -29,7 +29,6 @@
       <h2>Edit Event Selected</h2>
     
     <?php
-      include'dbh.php';
       //checked if logged in
     if(!isset($_SESSION['username'])) {
       echo '<h1>Sorry, you must be logged in to view this event.</h1>';
