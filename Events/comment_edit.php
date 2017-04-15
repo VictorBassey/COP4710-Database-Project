@@ -7,13 +7,16 @@ include '../Navbar/includes/dbh.php';
 
 if(isset($_POST['commentSubmit'])){
                 //header("Location:event_comments.php");
-                 ?><script type="text/javascript">location.href = 'event_comments.php';</script><?php
+                 ?><script type="text/javascript">location.href = 'public_event.php';</script><?php
             }
+
+    
 
   function getComment($mysqli){
        // $eid = $_SESSION['eid'];
         // $eid = $_POST['eid'];
-        $commentid = 1;
+        $commentid = $_GET['commentid'];
+      //echo $commentid;
       // HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!
         $sql = "SELECT * FROM comment WHERE commentid= '$commentid'";
         $result = mysqli_query($mysqli, $sql);
@@ -22,6 +25,7 @@ if(isset($_POST['commentSubmit'])){
         if(mysqli_num_rows($result)>0){
             $row = $result ->fetch_assoc();
             $commentContents = $row['comment'];
+           // echo $commentContents;
             $_SESSION['commentContents'] = $commentContents;
             /*
             while($row = $result ->fetch_assoc()){
@@ -53,7 +57,7 @@ if(isset($_POST['commentSubmit'])){
                 
                 //HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!
                 $eid = $_SESSION['eid'];
-                $commentid = 1;
+                $commentid = $_GET['commentid'];
                 $message = $_POST['message'];
 
                 //inserts data to the database
@@ -66,10 +70,11 @@ if(isset($_POST['commentSubmit'])){
                 
             }
         
-           /* if(isset($_POST['commentSubmit'])){
-                header("Location:event_comments.php");
+            if(isset($_POST['commentSubmit'])){
+               // header("Location:event_comments.php");
+                ?><script type="text/javascript">location.href = 'public_event.php';</script><?php
             }
-            */
+            
         }
 
 
@@ -80,7 +85,8 @@ if(isset($_POST['commentSubmit'])){
 
 
     $eid = $_SESSION['eid'];
-    
+   // echo $eid;
+    //echo $_GET['commentid'];
         // $eid = $_SESSION['eid'];
         $sql = "SELECT * FROM events WHERE eid = '$eid'";
         $result = mysqli_query($mysqli, $sql);
@@ -228,6 +234,9 @@ ul{
     </ul>
     ";
     */
+   getComment($mysqli);
+     $commentContents = $_SESSION['commentContents'];
+   // echo $commentContents;
     
    echo" <form method='POST' action='".setComment($mysqli)."'>
         <input type='hidden' name='uid' value='Anonymous'>
@@ -236,7 +245,7 @@ ul{
         <button class='commentsubmit' type='submit' name='commentSubmit'>Change Comment</button>
     </form>";
     
-getComment($mysqli)
+
 ?>
 </body>
 

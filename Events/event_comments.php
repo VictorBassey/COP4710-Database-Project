@@ -4,10 +4,17 @@
 include "../Navbar/navbar.php";    
 include '../Navbar/includes/dbh.php';
   
-        if(isset($_POST['commentEdit'])){
+        //if(!isset($_SESSION['eid'])){
+            $_SESSION['eid'] = $_GET['varname'];
             
+       // }
+            
+        if(isset($_POST['commentEdit'])){
+            echo $_SESSION['cid'];
+            ?><script type="text/javascript">location.href = 'comment_edit.php';</script><?php
         }
-    
+            $eid = $_SESSION['eid'];
+        
     
 
     // refrences to a variable outside of function $mysqli
@@ -16,9 +23,10 @@ include '../Navbar/includes/dbh.php';
         if(isset($_POST['commentSubmit'])){
             // grabs data from url or Session vars
             $uid = $_SESSION['uid'];
+            $eid = $_SESSION['eid'];
             //$eid = $_SESSION['eid'];
-            $eid = $_POST['varname'];
-            $_SESSION['eid'] = $eid;
+            //$eid = $_POST['varname']; 
+            //$_SESSION['eid'] = $eid;
             $message = $_POST['message'];
 
             //inserts data to the database
@@ -32,8 +40,10 @@ include '../Navbar/includes/dbh.php';
     function getComments($mysqli){
        // $eid = $_SESSION['eid'];
         // $eid = $_POST['eid'];
-        $eid = $_GET['varname'];
+        //$eid = $_GET['varname'];
         //$eid = 1;
+        $eid = $_SESSION['eid'];
+       // echo $eid;
         $sql = "SELECT * FROM comment WHERE eid= '$eid'";
         $result = mysqli_query($mysqli, $sql);
         // pulls results from the db until there is no 
@@ -44,11 +54,19 @@ include '../Navbar/includes/dbh.php';
                 echo "<div class='comment-box'><p>";
                     echo $row['uid']."<br>";
                     echo $row['ctime']."<br>";
+                $commentid = $row['commentid'];
+                $_SESSION['cid'] = $commentid;
+                
                     // searches for new lines in message and converts
                     // them to proper breaks 
                     echo nl2br($row['comment']);
                     echo "<br>";
-                    echo "<button class='commentedit' type='submit' name='commentEdit'>Comment</button>"; 
+                   // echo "<button class='commentedit' type='submit' name='commentEdit'  value = $commentid >Comment</button>"; 
+                
+             // echo '<h3><a href="event_comments.php? varname= '$commentid'">Display</a></h3> ';
+            
+              echo'<td><h3><a href="comment_edit.php?commentid='.$commentid.'">Edit Comment</a></h3></td></tr>';
+                 // echo '<a href="example.php?attribute='.$row1['att2'].'">'.$row1['att2'].'</a>';
                    // echo <a></a>
                 echo "<p></div>";
 
@@ -59,8 +77,10 @@ include '../Navbar/includes/dbh.php';
     }
 
 // Query and code to set event details!!!!!!!!!!!
-        $eid = $_GET['varname'];
-        $_SESSION['eid'] = $eid;
+  
+
+        
+        
         // $eid = $_SESSION['eid'];
         $sql = "SELECT * FROM events WHERE eid = '$eid'";
         $result = mysqli_query($mysqli, $sql);
@@ -171,6 +191,24 @@ ul{
    margin-left: none; 
     text-align: left;
     list-style: none;
+        }
+        
+     h3   a{
+    width: 100px;
+    height: 30px;
+    font-size: 11px;
+    margin-left: -2%;
+    margin-bottom: 0%;
+    padding: 6px;
+    padding-left: 5%;
+    padding-right: 5%;        
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    font-weight: 400;
+    cursor: pointer;  
+    text-decoration: none;
         }
     
     </style>
