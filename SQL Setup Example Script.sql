@@ -150,25 +150,25 @@ INSERT INTO memberof (uid, rsoid)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin3'), (SELECT rsoid FROM rso WHERE name = 'Serious Group'));
 
 # Create the events
-INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)
+INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin'), (SELECT rsoid FROM rso WHERE name = 'Database Group'),
- 'We learn how DBs work!', '2017-4-7 12:30:00', 'Educational', 'RSO', 'Orlando, FL');
+ 'We learn how DBs work!', '2017-4-7 12:30:00', 'Educational', 'RSO', 'Orlando, FL', '28.6024274', '-81.2000599');
  
 INSERT INTO events (aid, description, time, venuetype, eventtype, location)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin'),
  'Introductions', '2017-4-1 15:30:00', 'Social', 'Public', 'Orlando, FL');
  
-INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)
+INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin'), (SELECT rsoid FROM rso WHERE name = 'Database Group'),
- 'Officers Meeting', '2017-4-5 12:30:00', 'Administrative', 'Private', 'Orlando, FL');
+ 'Officers Meeting', '2017-4-5 12:30:00', 'Administrative', 'Private', 'Orlando, FL', '28.6024274', '-81.2000599');
  
-INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)
+INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin2'), (SELECT rsoid FROM rso WHERE name = 'Fun Group'),
- 'Dance Off', '2017-4-2 12:30:00', 'Social', 'Public', 'Orlando, FL');
+ 'Dance Off', '2017-4-2 12:30:00', 'Social', 'Public', 'Orlando, FL', '28.5230', '81.4634');
  
-INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)
+INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin3'), (SELECT rsoid FROM rso WHERE name = 'Serious Group'),
- 'Political Climate in America', '2017-4-3 12:30:00', 'Educational', 'RSO', 'Orlando, FL');
+ 'Political Climate in America', '2017-4-3 12:30:00', 'Educational', 'RSO', 'Orlando, FL', '28.5230', '81.4634');
 
 # Create a comment; In the actual site, comments would not be submitted this way, the PHP would hold the eid and user variables.
 INSERT INTO comment (uid, eid, rating, comment)
