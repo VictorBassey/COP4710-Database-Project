@@ -100,7 +100,9 @@ CREATE TABLE events (
     venuetype VARCHAR(20) NOT NULL,
     eventtype VARCHAR(20) NOT NULL,
     location VARCHAR(1000) NOT NULL,
-    approved BOOLEAN,
+    longitude VARCHAR(1000),
+    latitude VARCHAR(1000),
+    approved BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (eid),
     FOREIGN KEY (aid)
         REFERENCES admin (aid),
