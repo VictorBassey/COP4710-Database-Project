@@ -48,7 +48,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $_SESSION['message'] = "Registration Succesful! Added $username to the database!";
             $_SESSION['uid'] = $userid;
-            header("location: ../welcome.php");
+           // header("url=http://localhost/COP4710-Database-Project/Events/public_event.php");
+            header("location: ../../Events/public_event.php");
+            
+            
+           
+            
+            
             die();
         }
         else{

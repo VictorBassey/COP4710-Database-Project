@@ -52,7 +52,7 @@ include '../Navbar/includes/dbh.php';
         
         
         $_SESSION['message'] = "Event was approved by super admin";
-        header("location: approved_action.php");
+        header("location: approve_action.php");
     }
       
 ?>

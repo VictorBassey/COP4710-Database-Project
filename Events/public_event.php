@@ -61,7 +61,7 @@
 //Public events
 echo '<br><center><h1>Public Events</h1>';
 
-$sql ="SELECT * FROM events WHERE eventtype='public'";
+$sql ="SELECT * FROM events WHERE eventtype='public' AND approved=TRUE";
     
 $result = $mysqli->query($sql); 
 

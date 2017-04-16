@@ -4,6 +4,20 @@
 include "../Navbar/navbar.php";    
 include '../Navbar/includes/dbh.php';
     
+if(isset($_POST['commentDelete'])){
+                
+        $commentContent = $_SESSION['commentContents'];
+        
+        $sql = "DELETE FROM comment WHERE comment = '$commentContent'";
+        $yes = mysqli_query($mysqli,$sql);
+    if(!$yes){
+        echo $commentContent;
+        echo "did not work";
+    }else{
+                 ?><script type="text/javascript">location.href = 'public_event.php';</script><?php
+    }
+            }
+
 
 if(isset($_POST['commentSubmit'])){
                 //header("Location:event_comments.php");
@@ -58,6 +72,7 @@ if(isset($_POST['commentSubmit'])){
                 //HAVE TO CHANGE THIS!!!!!!!!!!!!!!!!!!!!!!!!
                 $eid = $_SESSION['eid'];
                 $commentid = $_GET['commentid'];
+                $_SESSION['commentid'] = $commentid;
                 $message = $_POST['message'];
 
                 //inserts data to the database
@@ -243,6 +258,8 @@ ul{
         <input type='hidden' name='date' value='".date('Y-m-d H:i:s')."'>
         <textarea name='message' input type ='text' placeholder = '$commentContents' ></textarea><br>
         <button class='commentsubmit' type='submit' name='commentSubmit'>Change Comment</button>
+        
+        <button class='commentsubmit' type='submit' name='commentDelete'>Delete Comment</button>
     </form>";
     
 

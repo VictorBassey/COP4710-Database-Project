@@ -11,7 +11,7 @@ include "../Navbar/navbar.php";
 
 
 <link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="signupStyle.css" type="text/css">
+<link rel="stylesheet" href="../Navbar/Signup/signupStyle.css" type="text/css">
 <body>
 <div class="body-content">
   <div class="module">
@@ -163,6 +163,7 @@ include "../Navbar/navbar.php";
         //Next Step: Add user into Admin Table
         //AID = UID
         //If already in table, then it doesn't matter
+        $_SESSION['accountType'] = 2;
         $aid = "INSERT INTO admin (aid) VALUES ('$user_id')";
         mysqli_query($mysqli, $aid); 
         echo "Added " .  $username . " into Admin Table!";
@@ -207,9 +208,9 @@ include "../Navbar/navbar.php";
 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
 <br>
-<a href= "welcome.php">Retrun to Welcome Page</a><br>
-<a href="rso_index.php">View RSO List</a>
-<a href= "rso_create">Return to Create RSO</a>
+
+<a href="rso_index.php">View RSO List</a><br>
+<a href= "rso_create.php">Return to Create RSO</a>
       
     
   </div>

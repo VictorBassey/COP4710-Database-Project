@@ -73,7 +73,7 @@ $result1 = $mysqli->query($uid1);
 $resultRow = mysqli_fetch_assoc($result1); 
 $uid = $resultRow['uid'];
 
-$sql ="SELECT * FROM events WHERE eventtype='private' AND eid IN (SELECT eid FROM registered WHERE uid = '$uid')"; 
+$sql ="SELECT * FROM events WHERE eventtype='private' AND eid IN (SELECT eid FROM registered WHERE uid = '$uid') AND approved=TRUE"; 
 
 $result = $mysqli->query($sql); 
 

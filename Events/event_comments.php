@@ -66,6 +66,8 @@ include '../Navbar/includes/dbh.php';
              // echo '<h3><a href="event_comments.php? varname= '$commentid'">Display</a></h3> ';
             
               echo'<td><h3><a href="comment_edit.php?commentid='.$commentid.'">Edit Comment</a></h3></td></tr>';
+                
+              
                  // echo '<a href="example.php?attribute='.$row1['att2'].'">'.$row1['att2'].'</a>';
                    // echo <a></a>
                 echo "<p></div>";

@@ -5,7 +5,7 @@ session_start();
 include '../Navbar/includes/dbh.php';
     include '../Navbar/navbar.php';
 
-$sql = 'SELECT * FROM events WHERE approved = 0';
+$sql = 'SELECT * FROM events WHERE approved = FALSE';
 
 $results = mysqli_query($mysqli, $sql);
 
