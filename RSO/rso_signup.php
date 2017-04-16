@@ -163,7 +163,10 @@ include "../Navbar/navbar.php";
         //Next Step: Add user into Admin Table
         //AID = UID
         //If already in table, then it doesn't matter
-        $_SESSION['accountType'] = 2;
+        if($_SESSION['accountType'] == 1){
+         $_SESSION['accountType'] = 2;   
+        }
+        
         $aid = "INSERT INTO admin (aid) VALUES ('$user_id')";
         mysqli_query($mysqli, $aid); 
         echo "Added " .  $username . " into Admin Table!";
