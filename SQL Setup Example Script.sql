@@ -164,11 +164,11 @@ VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name 
  
 INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin2'), (SELECT rsoid FROM rso WHERE name = 'Fun Group'),
- 'Dance Off', '2017-4-2 12:30:00', 'Social', 'Public', 'Orlando, FL', '28.5250', '81.4634');
+ 'Dance Off', '2017-4-2 12:30:00', 'Social', 'Public', 'Orlando, FL', '28.5250', '-81.4634');
  
 INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin3'), (SELECT rsoid FROM rso WHERE name = 'Serious Group'),
- 'Political Climate in America', '2017-4-3 12:30:00', 'Educational', 'RSO', 'Orlando, FL', '28.5230', '81.4634');
+ 'Political Climate in America', '2017-4-3 12:30:00', 'Educational', 'RSO', 'Orlando, FL', '28.5230', '-81.4634');
 
 # Create a comment; In the actual site, comments would not be submitted this way, the PHP would hold the eid and user variables.
 INSERT INTO comment (uid, eid, rating, comment)
