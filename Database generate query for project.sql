@@ -123,7 +123,7 @@ CREATE TABLE comment (
     FOREIGN KEY (uid)
         REFERENCES user (uid),
     FOREIGN KEY (eid)
-        REFERENCES events (eid)
+        REFERENCES events (eid) ON DELETE CASCADE
 )ENGINE=INNODB;
 
 CREATE TABLE registered (
