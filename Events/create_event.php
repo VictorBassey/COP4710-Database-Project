@@ -96,10 +96,10 @@ href="../Events/eventstyle.css">
   <form action="create_query.php" method="post"> 
     
     <label class="radio-inline">
-    <input type="radio" name="event_type" id="Radio1" value="public" onClick="rsoDropdown('pub');" checked> Public
+    <input type="radio" name="event_type" id="Radio1" value="Public" onClick="rsoDropdown('pub');" checked> Public
     </label>
     <label class="radio-inline">
-    <input type="radio" name="event_type" id="Radio2" value="private" onClick="rsoDropdown('priv');" > Private
+    <input type="radio" name="event_type" id="Radio2" value="Private" onClick="rsoDropdown('priv');" > Private
     </label>
     <label class="radio-inline">
     <input type="radio" name="event_type" id="Radio3" value="RSO" onClick="rsoDropdown('rso');" > RSO
