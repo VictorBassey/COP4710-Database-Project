@@ -160,11 +160,11 @@ VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name 
  
 INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin'), (SELECT rsoid FROM rso WHERE name = 'Database Group'),
- 'Officers Meeting', '2017-4-5 12:30:00', 'Administrative', 'Private', 'Orlando, FL', '28.6024274', '-81.2000599');
+ 'Officers Meeting', '2017-4-5 12:30:00', 'Administrative', 'Private', 'Orlando, FL', '28.6050', '-81.2000599');
  
 INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin2'), (SELECT rsoid FROM rso WHERE name = 'Fun Group'),
- 'Dance Off', '2017-4-2 12:30:00', 'Social', 'Public', 'Orlando, FL', '28.5230', '81.4634');
+ 'Dance Off', '2017-4-2 12:30:00', 'Social', 'Public', 'Orlando, FL', '28.5250', '81.4634');
  
 INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)
 VALUES ((SELECT aid FROM admin a INNER JOIN user u on u.uid= a.aid WHERE u.name = 'admin3'), (SELECT rsoid FROM rso WHERE name = 'Serious Group'),
