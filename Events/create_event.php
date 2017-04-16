@@ -154,7 +154,13 @@ href="../Events/eventstyle.css">
         
         <label for="inputName" class="sr-only">Location</label>
         <input type="text" name="location" class="form-control" placeholder="Location" required autofocus>
+        
+        <label for="inputName" class="sr-only">Longitud</label>
+        <input type="text" name="lon" class="form-control" placeholder="Longitud">
       
+        <label for="inputName" class="sr-only">Latitud</label>
+        <input type="text" name="lat" class="form-control" placeholder="Latitud">
+
         <label for="inputName" class="sr-only">Event Name</label>
         <input type="text" name="venuetype" class="form-control" placeholder="Event Name" required autofocus>
         
