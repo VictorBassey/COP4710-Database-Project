@@ -1,5 +1,5 @@
 <?php
-include '../dbh.php';
+include '../Navbar/Includes/dbh.php';
 
 //Parses the information to XML
 function parseToXML($htmlStr)
@@ -17,7 +17,7 @@ function parseToXML($htmlStr)
 $getInfo = "SELECT * FROM events";
 				
 //Makes the query
-$result = mysqli_query($conn, $getInfo) or die('Error getting data');
+$result = mysqli_query($mysqli, $getInfo) or die('Error getting data');
 
 header("Content-type: text/xml");
 

@@ -62,7 +62,7 @@ include '../Navbar/includes/dbh.php';
       
       
 <br>
-<a href= "../Navbar/welcome.php">Retrun to Welcome Page</a><br>
+<a href= "../Events/public_event.php">Return to Events Page</a><br>
 <a href= "../RSO/rso_index.php">Return to RSO Page</a>
       
  </div>

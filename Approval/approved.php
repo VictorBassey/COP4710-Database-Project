@@ -7,7 +7,7 @@ include '../Navbar/includes/dbh.php';
 
 $_SESSION['message'] = '';
 
-$sql = 'SELECT * FROM events WHERE approved IS NULL';
+$sql = 'SELECT * FROM events WHERE approved = FALSE';
 
 $results = mysqli_query($mysqli, $sql);
 

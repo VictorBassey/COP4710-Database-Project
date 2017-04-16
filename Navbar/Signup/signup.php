@@ -48,7 +48,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $_SESSION['message'] = "Registration Succesful! Added $username to the database!";
             $_SESSION['uid'] = $userid;
-            header("location: ../welcome.php");
+           // header("url=http://localhost/COP4710-Database-Project/Events/public_event.php");
+            header("location: ../../Events/public_event.php");
+            
+            
+           
+            
+            
             die();
         }
         else{
@@ -83,7 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         <select name="userSelect" id= "userSelect" required>
             <option value="0" disabled="disabled" selected="selected">Please select account type</option>
           <option value="1">User</option>
-          <option value="2">SuperAdmin</option>
+          <option value="3">SuperAdmin</option>
         </select>
         </div>
       <input type="submit" value="Register" name="register" class="btn btn-block btn-primary" />

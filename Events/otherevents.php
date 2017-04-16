@@ -62,7 +62,7 @@ echo'<br>';
 //not need to be logged in here
  $univname = $mysqli->real_escape_string($_POST['uni']);
 
-    $sql = "SELECT * FROM events WHERE eventtype = 'Public' AND rsoid IN (SELECT rsoid FROM rsoaffiliation WHERE univid IN (SELECT univid FROM university WHERE name='$univname'))";
+    $sql = "SELECT * FROM events WHERE eventtype = 'Public' AND rsoid IN (SELECT rsoid FROM rsoaffiliation WHERE univid IN (SELECT univid FROM university WHERE name='$univname')) AND approved=TRUE ";
 
     $result = $mysqli->query($sql); 
     

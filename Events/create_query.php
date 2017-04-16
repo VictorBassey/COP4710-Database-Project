@@ -27,13 +27,15 @@ $venuetype = $mysqli->real_escape_string($_POST['venuetype']);
 $time = $mysqli->real_escape_string($_POST['time']); 
 $description = $mysqli->real_escape_string($_POST['description']); 
 $eventtype = $mysqli->real_escape_string($_POST['event_type']); 
+$lng = $mysqli->real_escape_string($_POST['lon']); 
+$lat = $mysqli->real_escape_string($_POST['lat']); 
 
 if($eventtype == 'RSO')
     
 {
     $rsoid = $mysqli->real_escape_string($_POST['RSO']);
 
-    $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
+    $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location', '$lat', '$lng')";
 
     
     if ($mysqli->query($sql))
@@ -61,7 +63,7 @@ else
         //check if there's any row
         if(!($result->num_rows == 0))
         {
-        $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location')";
+        $sql = 'INSERT INTO events (aid, rsoid, description, time, venuetype, eventtype, location, lat, lng)'. "VALUES( '$uid' , '$rsoid', '$description', '$time', '$venuetype', '$eventtype', '$location', '$lat', '$lng')";
 
 
             if($mysqli->query($sql))
