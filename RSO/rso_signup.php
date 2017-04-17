@@ -19,7 +19,7 @@ include "../Navbar/navbar.php";
     <?php
 	//Checks if user is logged in
     if(isset($_SESSION['username'])){
-		echo $_SESSION['username'];
+		echo $_SESSION['username'] ."<br>";
 	} else {
 		echo "You are not logged in!";
 	}
@@ -156,9 +156,7 @@ include "../Navbar/navbar.php";
         VALUES ('$rso_name')";
         mysqli_query($mysqli, $sql2);
         
-        echo "Added " . $rso_name . " to the Database Successfully!";
-        echo "\n";
-
+        echo "Added " . $rso_name . " to the Database Successfully!" ."<br>";
         
         //Next Step: Add user into Admin Table
         //AID = UID
@@ -169,7 +167,7 @@ include "../Navbar/navbar.php";
         
         $aid = "INSERT INTO admin (aid) VALUES ('$user_id')";
         mysqli_query($mysqli, $aid); 
-        echo "Added " .  $username . " into Admin Table!";
+        echo "Added " .  $username . " into Admin Table!" ."<br>";
 
         //get rso ID
         $rid = "SELECT rsoid
@@ -252,13 +250,13 @@ include "../Navbar/navbar.php";
         //Next Step: affiliate RSO and University
         $aff = "INSERT INTO rsoaffiliation (rsoid, univid) VALUES ('$rso_id', '$univ_id')";
         mysqli_query($mysqli, $aff); 
-        echo "Added to Affiliation";
+        echo "Added to Affiliation" ."<br>";
         
         //insert User as RSO manager
         $sql4 = "INSERT INTO manages (aid, rsoid) 
         VALUES ('$user_id', '$rso_id')";
         mysqli_query($mysqli, $sql4);
-        echo "Added " . $username . " as Owner!";
+        echo "Added " . $username . " as Owner!" ."<br>";
 
     }
 
