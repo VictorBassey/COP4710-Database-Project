@@ -158,6 +158,19 @@ textarea{
     cursor: pointer;
     
 }
+        
+        .commentdelete{
+          width: 150px;
+    height: 30px;
+    margin-left: 0%;
+    margin-bottom: 2%;
+    background-color: #333;
+    border: none;
+    color: #fff;
+    font-family: arial;
+    font-weight: 400;
+    cursor: pointer;  
+        }
 h3{
     margin-left: 25%;
     margin-top: 2%;
@@ -259,7 +272,7 @@ ul{
         <textarea name='message' input type ='text' placeholder = '$commentContents' ></textarea><br>
         <button class='commentsubmit' type='submit' name='commentSubmit'>Change Comment</button>
         
-        <button class='commentsubmit' type='submit' name='commentDelete'>Delete Comment</button>
+        <button class='commentdelete' type='submit' name='commentDelete'>Delete Comment</button>
     </form>";
     
 

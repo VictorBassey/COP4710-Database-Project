@@ -35,7 +35,7 @@ $user = "SELECT * FROM user WHERE name = '$username' and password = '$password'"
        $count = mysqli_num_rows($users);
         
         if($count >= 1){
-            $_SESSION['accountType'] = 2;
+            $_SESSION['accountType'] = 3;
             
         } else {
             $user = "SELECT * FROM admin WHERE aid = '$uid'";
@@ -43,7 +43,7 @@ $user = "SELECT * FROM user WHERE name = '$username' and password = '$password'"
             $count = mysqli_num_rows($users);
         
             if($count >= 1){
-                $_SESSION['accountType'] = 3;
+                $_SESSION['accountType'] = 2;
 
             } else {
                  $_SESSION['accountType'] = 1;
