@@ -55,6 +55,16 @@ include '../Navbar/includes/dbh.php';
     else echo "Already Joined" . "<br>";
       
 ?>
+
+<?php
+   $name = "SELECT name
+            FROM rso
+            WHERE rsoid = '$rso_id'";
+    $rso_array = mysqli_query($mysqli, $name);
+    $rso_result = mysqli_fetch_assoc($rso_array);
+    $rso_name = $rso_result['name'];    
+?>
+	  
   
 <a href="http://twitter.com/share?text=I have joined the following RSO: 
 <?php echo $rso_name;?>. Check it out!" class="twitter-share-button" data-url="h" data-count="vertical">Tweet</a>
