@@ -179,10 +179,75 @@ include "../Navbar/navbar.php";
         $rso_id_result = mysqli_fetch_assoc($rso_id_array);
         $rso_id = $rso_id_result['rsoid'];
 	    
-	  //make user memeber of RSO
+	  //make user and other emails memeber of RSO
         $mem = "INSERT INTO memberof (uid, rsoid) 
         VALUES ('$user_id','$rso_id')";
         mysqli_query($mysqli, $mem);
+	    
+	 //email 1
+        
+        $u1 = "SELECT uid 
+                FROM user
+                WHERE email = '$e1'";
+        $u1_array = mysqli_query($mysqli, $u1);
+        $u1_result = mysqli_fetch_assoc($u1_array);
+        $u1_id = $u1_result['uid'];
+        
+        $mem1 = "INSERT INTO memberof (uid, rsoid) 
+        VALUES ('$u1_id','$rso_id')";
+        mysqli_query($mysqli, $mem1);
+        
+        //email 2
+        
+        $u2 = "SELECT uid 
+                FROM user
+                WHERE email = '$e2'";
+        $u2_array = mysqli_query($mysqli, $u2);
+        $u2_result = mysqli_fetch_assoc($u2_array);
+        $u2_id = $u2_result['uid'];
+        
+        $mem2 = "INSERT INTO memberof (uid, rsoid) 
+        VALUES ('$u2_id','$rso_id')";
+        mysqli_query($mysqli, $mem2);
+        
+        //email 3
+        
+        $u3 = "SELECT uid 
+                FROM user
+                WHERE email = '$e3'";
+        $u3_array = mysqli_query($mysqli, $u3);
+        $u3_result = mysqli_fetch_assoc($u3_array);
+        $u3_id = $u3_result['uid'];
+        
+        $mem3 = "INSERT INTO memberof (uid, rsoid) 
+        VALUES ('$u3_id','$rso_id')";
+        mysqli_query($mysqli, $mem3);
+        
+        //email 4
+        
+        $u4 = "SELECT uid 
+                FROM user
+                WHERE email = '$e4'";
+        $u4_array = mysqli_query($mysqli, $u4);
+        $u4_result = mysqli_fetch_assoc($u4_array);
+        $u4_id = $u2_result['uid'];
+        
+        $mem4 = "INSERT INTO memberof (uid, rsoid) 
+        VALUES ('$u4_id','$rso_id')";
+        mysqli_query($mysqli, $mem4);
+        
+        //email 5
+        
+        $u5 = "SELECT uid 
+                FROM user
+                WHERE email = '$e5'";
+        $u5_array = mysqli_query($mysqli, $u5);
+        $u5_result = mysqli_fetch_assoc($u5_array);
+        $u5_id = $u5_result['uid'];
+        
+        $mem5 = "INSERT INTO memberof (uid, rsoid) 
+        VALUES ('$u5_id','$rso_id')";
+        mysqli_query($mysqli, $mem5);
         
         //Next Step: affiliate RSO and University
         $aff = "INSERT INTO rsoaffiliation (rsoid, univid) VALUES ('$rso_id', '$univ_id')";
