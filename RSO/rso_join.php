@@ -17,7 +17,7 @@ include '../Navbar/includes/dbh.php';
       
     //Checks if user is logged in
     if(isset($_SESSION['username'])){
-		echo $_SESSION['username'];
+		echo $_SESSION['username'] . "<br>";
 	} else {
 		echo "You are not logged in!";
 	}
@@ -49,10 +49,10 @@ include '../Navbar/includes/dbh.php';
         $sql2 = "INSERT INTO memberof (uid, rsoid) 
         VALUES ('$user_id','$rso_id')";
         mysqli_query($mysqli, $sql2);
-        echo "Successfully Joined!";
+        echo "Successfully Joined!" . "<br>";
     }
     
-    else echo "Already Joined";
+    else echo "Already Joined" . "<br>";
       
 ?>
   
